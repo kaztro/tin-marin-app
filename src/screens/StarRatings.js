@@ -3,7 +3,6 @@
 
 // import React in our code
 import React, { useState } from 'react';
-
 // import all the components we are going to use
 import {
   SafeAreaView,
@@ -14,12 +13,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+/*import AsyncStorage from '@react-native-async-storage/async-storage';*/
+
+
 const StarRatings = () => {
   // To set the default Star Selected
   const [defaultRating, setDefaultRating] = useState(2);
   // To set the max number of Stars
   const [maxRating, setMaxRating] = useState([1, 2, 3, 4, 5]);
-
   // Filled Star. You can also give the path from local
   const starImageFilled =
     'https://raw.githubusercontent.com/AboutReact/sampleresource/master/star_filled.png';
@@ -57,28 +58,21 @@ const StarRatings = () => {
         <Text style={styles.textStyleSmall}>Por favor deja tu reseña de la exhibición</Text>
         {/*View to hold our Stars*/}
         <CustomRatingBar />
-
-        <Text style={styles.textStyle}>
-          {/*To show the rating selected*/}
-          {defaultRating} / {Math.max.apply(null, maxRating)}
-        </Text>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={styles.buttonStyle}
-          onPress={() => alert(defaultRating)}>
-          {/*Clicking on button will show the rating as an alert*/}
-          <Text style={styles.buttonTextStyle}>Obtener numero seleccionado</Text>
-        </TouchableOpacity>
-
+        
       </View>
     </SafeAreaView>
   );
 };
 
 /*
-
+const storeData = async (value) => {
+  try {
+    await AsyncStorage.setItem('@storage_Key', defaultRating)
+  } catch (e) {
+    
+  }
+}
 */
-
 
 export default StarRatings;
 
@@ -98,7 +92,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     textAlign: 'center',
-    fontSize: 23,
+    fontSize: 16,
     color: '#000',
     marginTop: 15,
   },
@@ -114,9 +108,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 30,
     padding: 15,
-    backgroundColor: '#8ad24e',
+    backgroundColor: '#e3001b',
   },
   buttonTextStyle: {
+    fontFamily: 'NunitoSans-Bold',
     color: '#fff',
     textAlign: 'center',
   },
