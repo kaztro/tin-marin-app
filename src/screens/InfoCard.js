@@ -5,6 +5,7 @@ import { getExhibitionById } from '../api/exhibitions';
 import ModalBody from '../components/ModalBody';
 import { ScrollView } from 'react-native-gesture-handler';
 import { map, size } from 'lodash';
+import StarRatings from './StarRatings';
 
 /**
  * Pantalla que muestra los detalles de una Exhibición.
@@ -53,6 +54,7 @@ const InfoCard = ({ route }) => {
         <Text style={styles.overview}>{exhibition.description}</Text>
         {logoURL && <InfoSponsor url={logoURL} />}
         <InfoFooter exhibition={exhibition} />
+        <StarRatings/>
       </ScrollView>
       <ModalBody
         visible={visible}

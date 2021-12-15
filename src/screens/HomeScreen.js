@@ -22,6 +22,7 @@ import {
   ohhButton,
 } from '../helpers/audio';
 import ConocenosMas from '../assets/ConocenosMas.jpg';
+/*Prueba estrellas */
 
 /**
  * Pantalla Principal que contiene una lista de tarjetas con los accesos directos de los diferentes
@@ -169,6 +170,7 @@ const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
     </ScrollView>
+
   );
 };
 
