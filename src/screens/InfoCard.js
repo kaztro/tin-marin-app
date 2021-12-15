@@ -56,17 +56,6 @@ const InfoCard = ({ route, navigation }) => {
         <Text style={styles.overview}>{exhibition.description}</Text>
         {logoURL && <InfoSponsor url={logoURL} />}
         <InfoFooter exhibition={exhibition} />
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('quiz');
-          }}
-          style={{
-            marginTop: 20, width: '100%', backgroundColor: Colors.blueColor, padding: 20, borderRadius: 5
-        }}>
-        <Text style={{
-            textAlign: 'center', color: Colors.white, fontSize: 20
-        }}>Realizar quiz</Text>
-        </TouchableOpacity>
       </ScrollView>
       <ModalBody
         visible={visible}
