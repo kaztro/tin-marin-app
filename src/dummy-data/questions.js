@@ -1,27 +1,27 @@
 export default questions = [
     {
-        question: "What’s the biggest planet in our solar system?",
-        options: ["Jupiter","Saturn","Neptune","Mercury"],
+        question: "¿Cuál es el planeta más grande del sistema solar?",
+        options: ["Jupiter","Saturno","Neptuno","Mercurio"],
         correct_option: "Jupiter"
     },
     {
-        question: "What attraction in India is one of the famus in the world?",
+        question: "¿Qué atracción de India es la más famosa?",
         options: ["Chand Minar","Taj Mahal","Stadium"],
         correct_option: "Taj Mahal"
     },
     {
-        question: "What land animal can open its mouth the widest?",
-        options: ["Alligator","Crocodile","Baboon","Hippo"],
-        correct_option: "Hippo"
+        question: "¿Qué animal terrestre puede abrir su boca más grande?",
+        options: ["Lagarto","Crocodilo","Mandril","Hipopótamo"],
+        correct_option: "Hipopótamo"
     },
     {
-        question: "What is the largest animal on Earth?",
-        options: ["The African elephant","The blue whale","The sperm whale","The giant squid"],
-        correct_option: "The blue whale"
+        question: "¿Cuál es el animal más grande en la Tierra?",
+        options: ["Elefante africano","Ballena azul","Cachalote","Calamar gigante"],
+        correct_option: "Ballena azul"
     },
     {
-        question: "What is the only flying mammal?",
-        options: ["The bat","The flying squirrel","The bald eagle","The colugo"],
-        correct_option: "The bat"
+        question: "¿Cuál es el único mamífero que vuela?",
+        options: ["Murciélago","Ardilla voladora","Aguila calva","Colugo"],
+        correct_option: "Murciélago"
     }
 ]
