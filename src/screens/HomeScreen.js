@@ -13,7 +13,6 @@ import FAQs from '../assets/FAQs.jpeg';
 import WebLinks from '../assets/WebLinks.jpg';
 import Sugerencias from '../assets/Sugerencias.png';
 import Exhibicion from '../assets/Exhibicion.jpg';
-import Quiz from '../assets/Quiz.jpg';
 
 import {
   playButtonPress,
@@ -63,26 +62,6 @@ const HomeScreen = ({ navigation }) => {
               <Text style={styles.text2}>
                 Ven y conoce todas nuestras exhibiciones disponibles para que
                 las puedas visitar !
-              </Text>
-            </View>
-          </ImageBackground>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPressIn={wowButton}
-          onPress={() => {
-            navigation.navigate('quiz');
-          }}
-          style={{ ...styles.cardContainer }}>
-          <ImageBackground
-            imageStyle={{ opacity: 0.5, ...styles.image }}
-            source={Quiz}
-            style={styles.card}
-            borderRadius={10}>
-            <View style={styles.textContainer}>
-              <Text style={styles.text}>Realizar un quiz</Text>
-              <Text style={styles.text2}>
-                ¿Haz visto nuestras exhibiciones? ¡Pon a prueba tus conocimientos!
               </Text>
             </View>
           </ImageBackground>

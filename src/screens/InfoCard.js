@@ -38,6 +38,7 @@ const InfoCard = ({ route, navigation }) => {
 
   useEffect(() => {
     getExhibitionById(_id).then((response) => {
+      console.log(response);
       setExhibition(response);
     });
   }, []);
@@ -56,7 +57,16 @@ const InfoCard = ({ route, navigation }) => {
         <Text style={styles.overview}>{exhibition.description}</Text>
         {logoURL && <InfoSponsor url={logoURL} />}
         <InfoFooter exhibition={exhibition} />
-        <StarRatings/>
+        <StarRatings />
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('quiz');
+          }}
+          style={{
+            marginTop: 20, width: '100%', backgroundColor: Colors.accent, padding: 20, borderRadius: 5
+          }}>
+          <Text style={{ fontSize: 20, color: Colors.white, textAlign: 'center' }}>Realiza un test</Text>
+        </TouchableOpacity>
       </ScrollView>
       <ModalBody
         visible={visible}

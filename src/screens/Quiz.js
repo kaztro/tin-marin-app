@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import { View, Text, SafeAreaView, StatusBar, Image, TouchableOpacity, Modal, Animated } from 'react-native'
 import Colors from '../constants/Colors';
-import questions from '../dummy-data/questions';
+//import questions from '../dummy-data/questions';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-//import Timer from './../components/Timer';
-import { white } from 'react-native-paper/lib/typescript/src/styles/colors';
+import { getExhibitionById } from '../api/exhibitions';
+import { map, size } from 'lodash';
 
 const Quiz = () => {
 
-    const allQuestions = questions;
+    const { _id } = route.params;
+    const [exhibition, setExhibition] = useState(null);
+    useEffect(() => {
+        getExhibitionById(_id).then((response) => {
+            setExhibition(response);
+        });
+    }, []);
+
+    if (!exhibition) return null;
+    
+    //const allQuestions = questions;
+    const [allQuestions] = exhibition.question;
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [currentOptionSelected, setCurrentOptionSelected] = useState(null);
     const [correctOption, setCorrectOption] = useState(null);
@@ -16,7 +27,8 @@ const Quiz = () => {
     const [score, setScore] = useState(0)
     const [showNextButton, setShowNextButton] = useState(false)
     const [showScoreModal, setShowScoreModal] = useState(false)
-    const [timer, setTimer] = useState(5);
+
+    //const [Quiz] = exhibition.questions; 
 
     function validateAnswer(selectedOption) {
         let correct_option = allQuestions[currentQuestionIndex]['correct_option'];
@@ -195,14 +207,6 @@ const Quiz = () => {
             </View>
         )
     }
-    
-    const renderTimer = () => {
-        return (
-            <View>
-                <Text style={{ color: Colors.blueColor, fontSize: 10, fontWeight: 10, opacity: 0.6 }}>30</Text>
-            </View>
-        )
-    }
 
     return (
         <SafeAreaView style={{
@@ -219,9 +223,6 @@ const Quiz = () => {
 
                 {/* ProgressBar */}
                 {renderProgressBar()}
-
-                {/* Timer */}
-                {renderTimer()}
 
                 {/* Question */}
                 {renderQuestion()}
