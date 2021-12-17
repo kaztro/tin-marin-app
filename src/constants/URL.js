@@ -19,3 +19,5 @@ export const API_HOST = 'https://tin-marin-app-v2.herokuapp.com/api/v1';
  * @example API_DEV = 'https://tinmarin.herokuapp.com/api/v1';
  */
 export const API_DEV = 'https://tinmarin.herokuapp.com/api/v1';
+
+//export const API_HOST= 'localhost:3001/api/v1';
