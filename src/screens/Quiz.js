@@ -3,25 +3,8 @@ import { View, Text, SafeAreaView, StatusBar, Image, TouchableOpacity, Modal, An
 import Colors from '../constants/Colors';
 import questions from '../dummy-data/questions';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Donut from './../components/Donut';
-
-const donutData = [{
-    percentage: 8,
-    color: 'tomato',
-    max: 10
-}, {
-    percentage: 14,
-    color: 'skyblue',
-    max: 20
-}, {
-    percentage: 92,
-    color: 'gold',
-    max: 100
-}, {
-    percentage: 240,
-    color: '#222',
-    max: 500
-}]
+//import Timer from './../components/Timer';
+import { white } from 'react-native-paper/lib/typescript/src/styles/colors';
 
 const Quiz = () => {
 
@@ -33,6 +16,7 @@ const Quiz = () => {
     const [score, setScore] = useState(0)
     const [showNextButton, setShowNextButton] = useState(false)
     const [showScoreModal, setShowScoreModal] = useState(false)
+    const [timer, setTimer] = useState(5);
 
     function validateAnswer(selectedOption) {
         let correct_option = allQuestions[currentQuestionIndex]['correct_option'];
@@ -211,6 +195,14 @@ const Quiz = () => {
             </View>
         )
     }
+    
+    const renderTimer = () => {
+        return (
+            <View>
+                <Text style={{ color: Colors.blueColor, fontSize: 10, fontWeight: 10, opacity: 0.6 }}>30</Text>
+            </View>
+        )
+    }
 
     return (
         <SafeAreaView style={{
@@ -228,13 +220,12 @@ const Quiz = () => {
                 {/* ProgressBar */}
                 {renderProgressBar()}
 
+                {/* Timer */}
+                {renderTimer()}
+
                 {/* Question */}
                 {renderQuestion()}
-            <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', flexWrap: 'wrap', alignItems: 'center' }}>
-                {data.map((p, i) => {
-                    return <Donut key={i} percentage={p.percentage} color={p.color} delay={500 + 100 * i} max={p.max} />
-                })}
-            </View>
+
                 {/* Options */}
                 {renderOptions()}
 
