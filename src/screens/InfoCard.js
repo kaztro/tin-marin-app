@@ -29,7 +29,8 @@ import StarRatings from './StarRatings';
  * @see https://lodash.com/docs/4.17.15#map
  * @return {SafeAreaView} Retorna un componente que contiene maquetada la vista
  */
-const InfoCard = ({ route, navigation }) => {
+const InfoCard = ({ route }) => {
+  
   const { _id } = route.params;
   const [visible, setVisible] = useState(false);
   const [exhibition, setExhibition] = useState(null);
@@ -46,6 +47,7 @@ const InfoCard = ({ route, navigation }) => {
 
   const [imageURL] = exhibition.images;
   const [logoURL] = exhibition.sponsorLogo;
+  console.log(exhibition)
 
   return (
     <SafeAreaView>
@@ -56,7 +58,10 @@ const InfoCard = ({ route, navigation }) => {
         <Text style={styles.overview}>{exhibition.description}</Text>
         {logoURL && <InfoSponsor url={logoURL} />}
         <InfoFooter exhibition={exhibition} />
-        <StarRatings/>
+        <StarRatings
+        id={_id}
+        exhibition={exhibition}
+        />
       </ScrollView>
       <ModalBody
         visible={visible}
