@@ -8,12 +8,10 @@ import { map, size } from 'lodash';
 
 const Quiz = ({ route, navigation }) => {
     const questionsIds = route.params;
-    console.log(questionsIds);
     const [questions, setQuestions] = useState(null);
 
     useEffect(() => {
         map(questionsIds, (_id) => {
-            console.log('id del map: ', _id);
             getQuizById(_id).then((response) => {
                 console.log('response', response);
                 setQuestions(questions => [...questions, response]);
