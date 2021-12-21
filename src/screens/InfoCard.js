@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, SafeAreaView, View, Image, TouchableOpacity } from 'react-native';
 import { IconButton, Text, Title } from 'react-native-paper';
 import { getExhibitionById } from '../api/exhibitions';
+//import { getQuizById } from '../api/quizzes'
 import ModalBody from '../components/ModalBody';
 import { ScrollView } from 'react-native-gesture-handler';
 import { map, size } from 'lodash';
@@ -33,12 +34,13 @@ const InfoCard = ({ route, navigation }) => {
   const { _id } = route.params;
   const [visible, setVisible] = useState(false);
   const [exhibition, setExhibition] = useState(null);
+  const [questions, setQuestions] = useState(null);
 
   const showModal = () => setVisible(!visible);
 
   useEffect(() => {
     getExhibitionById(_id).then((response) => {
-      console.log(response);
+      setQuestions(response.questions);
       setExhibition(response);
     });
   }, []);
@@ -60,7 +62,8 @@ const InfoCard = ({ route, navigation }) => {
         <StarRatings />
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('quiz');
+            //console.log(questions);
+            navigation.navigate('quiz', questions);
           }}
           style={{
             marginTop: 20, width: '100%', backgroundColor: Colors.accent, padding: 20, borderRadius: 5
@@ -73,7 +76,7 @@ const InfoCard = ({ route, navigation }) => {
         showModal={showModal}
         curiousInfo={exhibition.curiousInfo}
       />
-    </SafeAreaView>
+    </SafeAreaView >
   );
 };
 

@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StatusBar, Image, TouchableOpacity, Modal, Animated } from 'react-native'
 import Colors from '../constants/Colors';
+import { getQuizById } from '../api/quizzes'
 //import questions from '../dummy-data/questions';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { getExhibitionById } from '../api/exhibitions';
 import { map, size } from 'lodash';
 
-const Quiz = () => {
+const Quiz = ({ route, navigation }) => {
+    const questionsIds = route.params;
+    console.log(questionsIds);
+    const [questions, setQuestions] = useState(null);
 
-    const { _id } = route.params;
-    const [exhibition, setExhibition] = useState(null);
     useEffect(() => {
-        getExhibitionById(_id).then((response) => {
-            setExhibition(response);
+        getQuizById(questionsIds).then((response) => {
+            console.log('response', response);
+            setQuestions(response);
         });
     }, []);
 
     if (!exhibition) return null;
-    
+
+    console.log('questions', questions);
     //const allQuestions = questions;
-    const [allQuestions] = exhibition.question;
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [currentOptionSelected, setCurrentOptionSelected] = useState(null);
     const [correctOption, setCorrectOption] = useState(null);
@@ -28,10 +30,9 @@ const Quiz = () => {
     const [showNextButton, setShowNextButton] = useState(false)
     const [showScoreModal, setShowScoreModal] = useState(false)
 
-    //const [Quiz] = exhibition.questions; 
-
     function validateAnswer(selectedOption) {
-        let correct_option = allQuestions[currentQuestionIndex]['correct_option'];
+        let correct_option = questions.correct_option;
+        //let correct_option = questions[currentQuestionIndex]['correct_option'];
         setCurrentOptionSelected(selectedOption);
         setCorrectOption(correct_option);
         setIsOptionsDisabled(true);
@@ -42,9 +43,17 @@ const Quiz = () => {
         }
         setShowNextButton(true)
     }
-
+    /*
+        const getFrom = () => {
+            map(questionsIds, (_id) => {
+                getQuizById(_id).then((response) => {
+                    setQuestions( questions => [...questions, response] );
+                });
+            });
+        }
+    */
     const handleNext = () => {
-        if (currentQuestionIndex == allQuestions.length - 1) {
+        if (currentQuestionIndex == size(questions) - 1) {
             // Last Question
             // Show Score Modal
             setShowScoreModal(true)
@@ -89,13 +98,16 @@ const Quiz = () => {
 
                 }}>
                     <Text style={{ color: Colors.blueColor, fontSize: 20, opacity: 0.6, marginRight: 2 }}>{currentQuestionIndex + 1}</Text>
-                    <Text style={{ color: Colors.blueColor, fontSize: 18, opacity: 0.6 }}>{allQuestions.length}</Text>
+                    <Text style={{ color: Colors.blueColor, fontSize: 18, opacity: 0.6 }}>{size(questions)}</Text>
                 </View>
                 {/*Question*/}
                 <Text style={{
                     color: Colors.blueColor,
                     fontSize: 30
-                }}>{allQuestions[currentQuestionIndex]?.question}</Text>
+                }}>{
+                        questions.question
+                        //questions[currentQuestionIndex]?.question
+                    }</Text>
             </View>
         )
     }
@@ -104,7 +116,8 @@ const Quiz = () => {
         return (
             <View>
                 {
-                    allQuestions[currentQuestionIndex]?.options.map(option => (
+                    //questions[currentQuestionIndex]?.options.map(option => (
+                    questions.options.map(option => (
                         <TouchableOpacity
                             onPress={() => validateAnswer(option)}
                             disabled={isOptionsDisabled}
@@ -181,7 +194,7 @@ const Quiz = () => {
 
     const [progress, setProgress] = useState(new Animated.Value(0));
     const progressAnim = progress.interpolate({
-        inputRange: [0, allQuestions.length],
+        inputRange: [0, size(questions)],
         outputRange: ['0%', '100%']
     })
 
@@ -221,6 +234,9 @@ const Quiz = () => {
                 position: 'relative'
             }}>
 
+                {/* getFromApi */}
+                {/*getFrom()*/}
+
                 {/* ProgressBar */}
                 {renderProgressBar()}
 
@@ -252,7 +268,7 @@ const Quiz = () => {
                             padding: 20,
                             alignItems: 'center'
                         }}>
-                            <Text style={{ fontSize: 30, fontWeight: 'bold' }}>{score > (allQuestions.length / 2) ? '¡Lo lograste!' : 'Oh vaya, quizá la próxima...'}</Text>
+                            <Text style={{ fontSize: 30, fontWeight: 'bold' }}>{score > (size(questions) / 2) ? '¡Lo lograste!' : 'Oh vaya, quizá la próxima...'}</Text>
 
                             <View style={{
                                 flexDirection: 'row',
@@ -262,11 +278,11 @@ const Quiz = () => {
                             }}>
                                 <Text style={{
                                     fontSize: 30,
-                                    color: score > (allQuestions.length / 2) ? Colors.success : Colors.error
+                                    color: score > (size(questions) / 2) ? Colors.success : Colors.error
                                 }}>{score}</Text>
                                 <Text style={{
                                     fontSize: 20, color: Colors.black
-                                }}>/ {allQuestions.length}</Text>
+                                }}>/ {size(questions)}</Text>
                             </View>
                             {/* Retry Quiz button */}
                             <TouchableOpacity
