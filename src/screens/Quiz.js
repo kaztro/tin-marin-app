@@ -12,13 +12,16 @@ const Quiz = ({ route, navigation }) => {
     const [questions, setQuestions] = useState(null);
 
     useEffect(() => {
-        getQuizById(questionsIds).then((response) => {
-            console.log('response', response);
-            setQuestions(response);
-        });
-    }, []);
+        map(questionsIds, (_id) => {
+            console.log('id del map: ', _id);
+            getQuizById(_id).then((response) => {
+                console.log('response', response);
+                setQuestions(questions => [...questions, response]);
+            });
+        }, []);
+    })
 
-    if (!exhibition) return null;
+    if (!questions) return null;
 
     console.log('questions', questions);
     //const allQuestions = questions;
