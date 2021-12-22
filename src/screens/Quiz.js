@@ -6,20 +6,23 @@ import { getQuizById } from '../api/quizzes'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { map, size } from 'lodash';
 
-const Quiz = ({ route, navigation }) => {
+const Quiz = ({ route }) => {
     const questionsIds = route.params;
     const [questions, setQuestions] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         map(questionsIds, (_id) => {
             getQuizById(_id).then((response) => {
                 console.log('response', response);
-                setQuestions(questions => [...questions, response]);
+                if (questions != null) setQuestions(questions.concat(response));
+                else setQuestions(response);
             });
-        }, []);
-    })
+        });
+        setLoading(false);
+    });
 
-    if (!questions) return null;
+    //if (!questions) return null;
 
     console.log('questions', questions);
     //const allQuestions = questions;
@@ -44,15 +47,7 @@ const Quiz = ({ route, navigation }) => {
         }
         setShowNextButton(true)
     }
-    /*
-        const getFrom = () => {
-            map(questionsIds, (_id) => {
-                getQuizById(_id).then((response) => {
-                    setQuestions( questions => [...questions, response] );
-                });
-            });
-        }
-    */
+
     const handleNext = () => {
         if (currentQuestionIndex == size(questions) - 1) {
             // Last Question
@@ -226,84 +221,89 @@ const Quiz = ({ route, navigation }) => {
         <SafeAreaView style={{
             flex: 1
         }}>
-            <StatusBar barStyle='light-content' backgroundColor={Colors.primaryColor} />
-            <View style={{
-                flex: 1,
-                paddingVertical: 40,
-                paddingHorizontal: 16,
-                backgroundColor: Colors.backgroundColor,
-                position: 'relative'
-            }}>
+            {loading ? (
+                <StatusBar barStyle='light-content' backgroundColor={Colors.primaryColor} />
+            ) : size(questions) == 0 ? (
+                <Text>No se encontraron Preguntas</Text>
+            ) : (
+                <View style={{
+                    flex: 1,
+                    paddingVertical: 40,
+                    paddingHorizontal: 16,
+                    backgroundColor: Colors.backgroundColor,
+                    position: 'relative'
+                }}>
 
-                {/* getFromApi */}
-                {/*getFrom()*/}
+                    {/* getFromApi */}
+                    {/*getFrom()*/}
 
-                {/* ProgressBar */}
-                {renderProgressBar()}
+                    {/* ProgressBar */}
+                    {renderProgressBar()}
 
-                {/* Question */}
-                {renderQuestion()}
+                    {/* Question */}
+                    {renderQuestion()}
 
-                {/* Options */}
-                {renderOptions()}
+                    {/* Options */}
+                    {renderOptions()}
 
-                {/* Next Button */}
-                {renderNextButton()}
+                    {/* Next Button */}
+                    {renderNextButton()}
 
-                {/* Score Modal */}
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={showScoreModal}
-                >
-                    <View style={{
-                        flex: 1,
-                        backgroundColor: Colors.primaryColor,
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }}>
+                    {/* Score Modal */}
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={showScoreModal}
+                    >
                         <View style={{
-                            backgroundColor: Colors.blueColor,
-                            width: '90%',
-                            borderRadius: 20,
-                            padding: 20,
-                            alignItems: 'center'
+                            flex: 1,
+                            backgroundColor: Colors.primaryColor,
+                            alignItems: 'center',
+                            justifyContent: 'center'
                         }}>
-                            <Text style={{ fontSize: 30, fontWeight: 'bold' }}>{score > (size(questions) / 2) ? '¡Lo lograste!' : 'Oh vaya, quizá la próxima...'}</Text>
-
                             <View style={{
-                                flexDirection: 'row',
-                                justifyContent: 'flex-start',
-                                alignItems: 'center',
-                                marginVertical: 20
+                                backgroundColor: Colors.blueColor,
+                                width: '90%',
+                                borderRadius: 20,
+                                padding: 20,
+                                alignItems: 'center'
                             }}>
-                                <Text style={{
-                                    fontSize: 30,
-                                    color: score > (size(questions) / 2) ? Colors.success : Colors.error
-                                }}>{score}</Text>
-                                <Text style={{
-                                    fontSize: 20, color: Colors.black
-                                }}>/ {size(questions)}</Text>
-                            </View>
-                            {/* Retry Quiz button */}
-                            <TouchableOpacity
-                                onPress={restartQuiz}
-                                style={{
-                                    backgroundColor: Colors.accent,
-                                    padding: 20, width: '100%', borderRadius: 20
+                                <Text style={{ fontSize: 30, fontWeight: 'bold' }}>{score > (size(questions) / 2) ? '¡Lo lograste!' : 'Oh vaya, quizá la próxima...'}</Text>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'flex-start',
+                                    alignItems: 'center',
+                                    marginVertical: 20
                                 }}>
-                                <Text style={{
-                                    textAlign: 'center', color: Colors.blueColor, fontSize: 20
-                                }}>Volver a intentarlo</Text>
-                            </TouchableOpacity>
+                                    <Text style={{
+                                        fontSize: 30,
+                                        color: score > (size(questions) / 2) ? Colors.success : Colors.error
+                                    }}>{score}</Text>
+                                    <Text style={{
+                                        fontSize: 20, color: Colors.black
+                                    }}>/ {size(questions)}</Text>
+                                </View>
+                                {/* Retry Quiz button */}
+                                <TouchableOpacity
+                                    onPress={restartQuiz}
+                                    style={{
+                                        backgroundColor: Colors.accent,
+                                        padding: 20, width: '100%', borderRadius: 20
+                                    }}>
+                                    <Text style={{
+                                        textAlign: 'center', color: Colors.blueColor, fontSize: 20
+                                    }}>Volver a intentarlo</Text>
+                                </TouchableOpacity>
+
+                            </View>
 
                         </View>
+                    </Modal>
 
-                    </View>
-                </Modal>
-
-            </View>
-        </SafeAreaView>
+                </View>
+            )}
+        </SafeAreaView >
     )
 }
 
