@@ -12,15 +12,16 @@ const Quiz = ({ route }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        map(questionsIds, (_id) => {
+        map(questionsIds, (_id, index) => {
+            console.log(index, _id);
             getQuizById(_id).then((response) => {
                 console.log('response', response);
-                if (questions != null) setQuestions(questions.concat(response));
+                if (questions !== null) setQuestions(questions => [...questions, response]);
                 else setQuestions(response);
             });
         });
         setLoading(false);
-    });
+    }, []);
 
     //if (!questions) return null;
 
