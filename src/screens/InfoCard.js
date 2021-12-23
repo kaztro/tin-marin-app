@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, SafeAreaView, View, Image, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import { IconButton, Text, Title } from 'react-native-paper';
 import { getExhibitionById } from '../api/exhibitions';
 import ModalBody from '../components/ModalBody';
 import { ScrollView } from 'react-native-gesture-handler';
 import { map, size } from 'lodash';
 import Colors from '../constants/Colors';
-
 
 /**
  * Pantalla que muestra los detalles de una Exhibición.
@@ -29,6 +34,7 @@ import Colors from '../constants/Colors';
  * @see https://lodash.com/docs/4.17.15#map
  * @return {SafeAreaView} Retorna un componente que contiene maquetada la vista
  */
+
 const InfoCard = ({ route, navigation }) => {
   const { _id } = route.params;
   const [visible, setVisible] = useState(false);
@@ -44,6 +50,7 @@ const InfoCard = ({ route, navigation }) => {
 
   if (!exhibition) return null;
 
+  const images = [exhibition.images];
   const [imageURL] = exhibition.images;
   const [logoURL] = exhibition.sponsorLogo;
 
@@ -72,9 +79,31 @@ export default InfoCard;
  *@ignore
  */
 const InfoImage = ({ path }) => {
+  const [imgActive, setimgActive] = useState(0);
+
+  onChange = (nativeEvent) => {
+    if (nativeEvent) {
+      const slide = Math.ceil(
+        nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width,
+      );
+      if (slide != imgActive) {
+        setimgActive(slide);
+      }
+    }
+  };
+
   return (
     <View style={styles.viewPoster}>
-      <Image style={styles.poster} source={{ uri: path }} />
+      <ScrollView
+        onScroll={({ nativeEvent }) => onChange(nativeEvent)}
+        showsHorizontalScrollIndicator={false}
+        pagingEnabled
+        horizontal
+        style={styles.wrap}>
+        {images.map((e, index) => (
+          <Image style={styles.poster} source={{ uri: path }} />
+        ))}
+      </ScrollView>
     </View>
   );
 };
@@ -270,5 +299,19 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 4,
     marginBottom: 2,
+  },
+  wrapDot: {
+    position: 'absolute',
+    bottom: 0,
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
+  dotActivate: {
+    margin: 3,
+    color: 'black',
+  },
+  dot: {
+    margin: 3,
+    color: 'white',
   },
 });
