@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { IconButton, Text, Title } from 'react-native-paper';
 import { getExhibitionById } from '../api/exhibitions';
+import { getExhibitionByImage } from '../api/exhibitions';
 import ModalBody from '../components/ModalBody';
 import { ScrollView } from 'react-native-gesture-handler';
 import { map, size } from 'lodash';
@@ -50,8 +51,7 @@ const InfoCard = ({ route, navigation }) => {
 
   if (!exhibition) return null;
 
-  const images = [exhibition.images];
-  const [imageURL] = exhibition.images;
+  const imageURL = exhibition.images;
   const [logoURL] = exhibition.sponsorLogo;
 
   return (
@@ -81,29 +81,11 @@ export default InfoCard;
 const InfoImage = ({ path }) => {
   const [imgActive, setimgActive] = useState(0);
 
-  onChange = (nativeEvent) => {
-    if (nativeEvent) {
-      const slide = Math.ceil(
-        nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width,
-      );
-      if (slide != imgActive) {
-        setimgActive(slide);
-      }
-    }
-  };
-
   return (
     <View style={styles.viewPoster}>
-      <ScrollView
-        onScroll={({ nativeEvent }) => onChange(nativeEvent)}
-        showsHorizontalScrollIndicator={false}
-        pagingEnabled
-        horizontal
-        style={styles.wrap}>
-        {images.map((e, index) => (
-          <Image style={styles.poster} source={{ uri: path }} />
-        ))}
-      </ScrollView>
+      {path.map((e, index) => (
+        <Image key={e} style={styles.poster} source={{ uri: e }} />
+      ))}
     </View>
   );
 };
