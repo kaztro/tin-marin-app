@@ -5,27 +5,38 @@ import { getQuizById } from '../api/quizzes'
 //import questions from '../dummy-data/questions';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { map, size } from 'lodash';
+import { createIconSetFromFontello } from 'react-native-vector-icons';
 
 const Quiz = ({ route }) => {
     const questionsIds = route.params;
-    const [questions, setQuestions] = useState(null);
+    const [questions, setQuestions] = useState([]);
     const [loading, setLoading] = useState(true);
+    console.log(size(questions))
 
     useEffect(() => {
         map(questionsIds, (_id, index) => {
-            console.log(index, _id);
+            //console.log(index, _id);
             getQuizById(_id).then((response) => {
-                console.log('response', response);
-                if (questions !== null) setQuestions(questions => [...questions, response]);
-                else setQuestions(response);
+            
+                if (questions.length = 0) {
+                    setQuestions(response);
+                    //setQuestions(questions => [...questions, response])
+                    console.log("entra en no nulo");
+                }else {
+                    //
+                    setQuestions(questions => [...questions, response]);
+                    console.log("entra en NULAZO");
+                }
+                //console.log('response', response);
+               
             });
         });
         setLoading(false);
     }, []);
 
     //if (!questions) return null;
-
-    console.log('questions', questions);
+    console.log('array', questions);
+    //console.log('questions2', size(questions));
     //const allQuestions = questions;
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [currentOptionSelected, setCurrentOptionSelected] = useState(null);
@@ -102,9 +113,9 @@ const Quiz = ({ route }) => {
                     color: Colors.blueColor,
                     fontSize: 30
                 }}>{
-                        questions.question
-                        //questions[currentQuestionIndex]?.question
-                    }</Text>
+                        //questions.question
+                        questions[currentQuestionIndex]?.question
+                }</Text>
             </View>
         )
     }
@@ -113,8 +124,8 @@ const Quiz = ({ route }) => {
         return (
             <View>
                 {
-                    //questions[currentQuestionIndex]?.options.map(option => (
-                    questions.options.map(option => (
+                    questions[currentQuestionIndex]?.options.map(option => (
+                    //questions.options.map(option => (
                         <TouchableOpacity
                             onPress={() => validateAnswer(option)}
                             disabled={isOptionsDisabled}
