@@ -35,7 +35,7 @@ const Quiz = ({ route }) => {
     }, []);
 
     //if (!questions) return null;
-    console.log('array', questions);
+
     //console.log('questions2', size(questions));
     //const allQuestions = questions;
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
@@ -47,8 +47,9 @@ const Quiz = ({ route }) => {
     const [showScoreModal, setShowScoreModal] = useState(false)
 
     function validateAnswer(selectedOption) {
-        let correct_option = questions.correct_option;
+        let correct_option = questions[currentQuestionIndex]?.correct_option;
         //let correct_option = questions[currentQuestionIndex]['correct_option'];
+        console.log('array', questions[currentQuestionIndex]?.correct_option);
         setCurrentOptionSelected(selectedOption);
         setCorrectOption(correct_option);
         setIsOptionsDisabled(true);
