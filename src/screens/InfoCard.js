@@ -9,7 +9,6 @@ import Colors from '../constants/Colors';
 import StarRatings from './StarRatings';
 import curiosidades1 from '../assets/icons/curiosidades1.png';
 
-
 /**
  * Pantalla que muestra los detalles de una Exhibición.
  * @param {prop} route - Recibe parametros importantes para mostrar en pantalla
@@ -50,14 +49,14 @@ const InfoCard = ({ route, navigation }) => {
   const [logoURL] = exhibition.sponsorLogo;
 
   return (
-    <SafeAreaView>
+    <SafeAreaView >
       <ScrollView showsVerticalScrollIndicator={false}>
         <InfoImage path={imageURL} />
         <InfoModal setVisible={setVisible} />
         <InfoTitle exhibition={exhibition} />
         <Text style={styles.overview}>{exhibition.description}</Text>
-        {logoURL && <InfoSponsor url={logoURL} />}
         <InfoFooter exhibition={exhibition} />
+        {logoURL && <InfoSponsor url={logoURL} />}
         <StarRatings/>
       </ScrollView>
       <ModalBody
@@ -269,8 +268,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   imgSponsor: {
-    width: 160,
-    height: 100,
+    width: 120,
+    height: 60,
     alignSelf: 'center',
     marginTop: 4,
     marginBottom: 2,
