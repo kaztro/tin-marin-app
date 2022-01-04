@@ -66,7 +66,7 @@ const HomeScreen = ({ navigation }) => {
             </View>
           </ImageBackground>
         </TouchableOpacity>
-
+{/* 
         <TouchableOpacity
           onPressIn={wowButton}
           onPress={() => {
@@ -85,7 +85,7 @@ const HomeScreen = ({ navigation }) => {
               </Text>
             </View>
           </ImageBackground>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity
           onPressIn={heyListenButton}

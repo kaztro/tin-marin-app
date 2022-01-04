@@ -9,7 +9,6 @@ import {
 import { IconButton, Text, Title } from 'react-native-paper';
 import { getExhibitionById } from '../api/exhibitions';
 //import { getQuizById } from '../api/quizzes'
-import { getExhibitionByImage } from '../api/exhibitions';
 import ModalBody from '../components/ModalBody';
 import { ScrollView } from 'react-native-gesture-handler';
 import { map, size } from 'lodash';
