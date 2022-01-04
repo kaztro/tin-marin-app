@@ -60,3 +60,4 @@ buck-out/
 
 #esdoc documentation
 docs/
+package-lock.json

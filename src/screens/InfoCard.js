@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, SafeAreaView, View, Image, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import { IconButton, Text, Title } from 'react-native-paper';
 import { getExhibitionById } from '../api/exhibitions';
+//import { getQuizById } from '../api/quizzes'
 import ModalBody from '../components/ModalBody';
 import { ScrollView } from 'react-native-gesture-handler';
 import { map, size } from 'lodash';
 import Colors from '../constants/Colors';
+import { SliderBox } from 'react-native-image-slider-box';
 import StarRatings from './StarRatings';
+import curiosidades1 from '../assets/icons/curiosidades1.png';
 
 /**
  * Pantalla que muestra los detalles de una Exhibición.
@@ -29,46 +38,56 @@ import StarRatings from './StarRatings';
  * @see https://lodash.com/docs/4.17.15#map
  * @return {SafeAreaView} Retorna un componente que contiene maquetada la vista
  */
-const InfoCard = ({ route }) => {
-  
+
+const InfoCard = ({ route, navigation }) => {
   const { _id } = route.params;
   const [visible, setVisible] = useState(false);
   const [exhibition, setExhibition] = useState(null);
+  const [questions, setQuestions] = useState(null);
 
   const showModal = () => setVisible(!visible);
 
   useEffect(() => {
     getExhibitionById(_id).then((response) => {
+      setQuestions(response.questions);
       setExhibition(response);
     });
   }, []);
 
   if (!exhibition) return null;
 
-  const [imageURL] = exhibition.images;
+  const imageURL = exhibition.images;
   const [logoURL] = exhibition.sponsorLogo;
   console.log(exhibition)
 
   return (
-    <SafeAreaView>
+    <SafeAreaView >
       <ScrollView showsVerticalScrollIndicator={false}>
         <InfoImage path={imageURL} />
         <InfoModal setVisible={setVisible} />
         <InfoTitle exhibition={exhibition} />
         <Text style={styles.overview}>{exhibition.description}</Text>
+        <InfoFooter exhibition={exhibition} />
         {logoURL && <InfoSponsor url={logoURL} />}
         <InfoFooter exhibition={exhibition} />
-        <StarRatings
-        id={_id}
-        exhibition={exhibition}
-        />
+        <StarRatings />
+        <TouchableOpacity
+          onPress={() => {
+            //console.log(questions);
+            navigation.navigate('quiz', questions);
+          }}
+          style={{
+            marginTop: 20, width: '100%', backgroundColor: Colors.accent, padding: 20, borderRadius: 5
+          }}>
+          <Text style={{ fontSize: 20, color: Colors.white, textAlign: 'center' }}>Realiza un test</Text>
+        </TouchableOpacity>
       </ScrollView>
       <ModalBody
         visible={visible}
         showModal={showModal}
         curiousInfo={exhibition.curiousInfo}
       />
-    </SafeAreaView>
+    </SafeAreaView >
   );
 };
 
@@ -78,10 +97,19 @@ export default InfoCard;
  *@ignore
  */
 const InfoImage = ({ path }) => {
+  const [imgActive, setimgActive] = useState(0);
+
   return (
-    <View style={styles.viewPoster}>
-      <Image style={styles.poster} source={{ uri: path }} />
-    </View>
+    /* <View style={styles.viewPoster}>
+      {path.map((e, index) => (
+        <Image key={e} style={styles.poster} source={{ uri: e }} />
+      ))}
+    </View>*/
+    <SliderBox
+      images={path}
+      onCurrentImagePressed={(index) => console.warn(`image ${index} pressed`)}
+      currentImageEmitter={(index) => console.warn(`current pos is: ${index}`)}
+    />
   );
 };
 
@@ -92,9 +120,9 @@ const InfoModal = ({ setVisible }) => {
   return (
     <View style={styles.viewModal}>
       <IconButton
-        icon="information-variant"
-        size={30}
-        color="#000"
+        icon="google-downasaur"
+        size={40}
+        color="#97be0d"
         style={styles.info}
         onPress={() => setVisible(true)}
       />
@@ -108,11 +136,12 @@ const InfoModal = ({ setVisible }) => {
 const InfoTitle = ({ exhibition }) => {
   return (
     <View style={styles.viewInfo}>
-      <Title style={{ color: '#F29F05', fontWeight: 'bold', fontSize: 23 }}>
+      <Title style={{ color: '#F29F05', fontWeight: 'bold', fontSize: 23, textAlign: 'center' }}>
         {exhibition.name}
       </Title>
     </View>
   );
+  
 };
 
 /**
@@ -271,10 +300,24 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   imgSponsor: {
-    width: 160,
-    height: 100,
+    width: 120,
+    height: 60,
     alignSelf: 'center',
     marginTop: 4,
     marginBottom: 2,
+  },
+  wrapDot: {
+    position: 'absolute',
+    bottom: 0,
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
+  dotActivate: {
+    margin: 3,
+    color: 'black',
+  },
+  dot: {
+    margin: 3,
+    color: 'white',
   },
 });

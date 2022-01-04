@@ -26,7 +26,8 @@ const DrawerContent = (props) => {
     <DrawerContentScrollView style={styles.drawer}>
       <Drawer.Section style={styles.image}>
         <Avatar.Image
-          backgroundColor={'#4E73DF'}
+          backgroundColor={'#FFF'}
+
           size={100}
           source={require('../assets/logoDrawer.png')}
         />
@@ -89,6 +90,7 @@ const styles = StyleSheet.create({
   image: {
     alignItems: 'center',
     backgroundColor: '#4E73DF',
+    marginTop:20,
   },
   second: {
     color: '#860472',

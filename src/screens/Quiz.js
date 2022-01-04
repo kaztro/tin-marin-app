@@ -1,31 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StatusBar, Image, TouchableOpacity, Modal, Animated } from 'react-native'
 import Colors from '../constants/Colors';
-import questions from '../dummy-data/questions';
+import { getQuizById } from '../api/quizzes'
+//import questions from '../dummy-data/questions';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Donut from './../components/Donut';
+import { map, size } from 'lodash';
+import { createIconSetFromFontello } from 'react-native-vector-icons';
 
-const donutData = [{
-    percentage: 8,
-    color: 'tomato',
-    max: 10
-}, {
-    percentage: 14,
-    color: 'skyblue',
-    max: 20
-}, {
-    percentage: 92,
-    color: 'gold',
-    max: 100
-}, {
-    percentage: 240,
-    color: '#222',
-    max: 500
-}]
+const Quiz = ({ route }) => {
+    const questionsIds = route.params;
+    const [questions, setQuestions] = useState([]);
+    const [loading, setLoading] = useState(true);
+    console.log(size(questions))
 
-const Quiz = () => {
+    useEffect(() => {
+        map(questionsIds, (_id, index) => {
+            //console.log(index, _id);
+            getQuizById(_id).then((response) => {
+            
+                if (questions.length = 0) {
+                    setQuestions(response);
+                    //setQuestions(questions => [...questions, response])
+                    console.log("entra en no nulo");
+                }else {
+                    //
+                    setQuestions(questions => [...questions, response]);
+                    console.log("entra en NULAZO");
+                }
+                //console.log('response', response);
+               
+            });
+        });
+        setLoading(false);
+    }, []);
 
-    const allQuestions = questions;
+    //if (!questions) return null;
+
+    //console.log('questions2', size(questions));
+    //const allQuestions = questions;
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [currentOptionSelected, setCurrentOptionSelected] = useState(null);
     const [correctOption, setCorrectOption] = useState(null);
@@ -35,7 +47,9 @@ const Quiz = () => {
     const [showScoreModal, setShowScoreModal] = useState(false)
 
     function validateAnswer(selectedOption) {
-        let correct_option = allQuestions[currentQuestionIndex]['correct_option'];
+        let correct_option = questions[currentQuestionIndex]?.correct_option;
+        //let correct_option = questions[currentQuestionIndex]['correct_option'];
+        console.log('array', questions[currentQuestionIndex]?.correct_option);
         setCurrentOptionSelected(selectedOption);
         setCorrectOption(correct_option);
         setIsOptionsDisabled(true);
@@ -48,7 +62,7 @@ const Quiz = () => {
     }
 
     const handleNext = () => {
-        if (currentQuestionIndex == allQuestions.length - 1) {
+        if (currentQuestionIndex == size(questions) - 1) {
             // Last Question
             // Show Score Modal
             setShowScoreModal(true)
@@ -93,13 +107,16 @@ const Quiz = () => {
 
                 }}>
                     <Text style={{ color: Colors.blueColor, fontSize: 20, opacity: 0.6, marginRight: 2 }}>{currentQuestionIndex + 1}</Text>
-                    <Text style={{ color: Colors.blueColor, fontSize: 18, opacity: 0.6 }}>{allQuestions.length}</Text>
+                    <Text style={{ color: Colors.blueColor, fontSize: 18, opacity: 0.6 }}>{size(questions)}</Text>
                 </View>
                 {/*Question*/}
                 <Text style={{
                     color: Colors.blueColor,
                     fontSize: 30
-                }}>{allQuestions[currentQuestionIndex]?.question}</Text>
+                }}>{
+                        //questions.question
+                        questions[currentQuestionIndex]?.question
+                }</Text>
             </View>
         )
     }
@@ -108,7 +125,8 @@ const Quiz = () => {
         return (
             <View>
                 {
-                    allQuestions[currentQuestionIndex]?.options.map(option => (
+                    questions[currentQuestionIndex]?.options.map(option => (
+                    //questions.options.map(option => (
                         <TouchableOpacity
                             onPress={() => validateAnswer(option)}
                             disabled={isOptionsDisabled}
@@ -185,7 +203,7 @@ const Quiz = () => {
 
     const [progress, setProgress] = useState(new Animated.Value(0));
     const progressAnim = progress.interpolate({
-        inputRange: [0, allQuestions.length],
+        inputRange: [0, size(questions)],
         outputRange: ['0%', '100%']
     })
 
@@ -216,85 +234,89 @@ const Quiz = () => {
         <SafeAreaView style={{
             flex: 1
         }}>
-            <StatusBar barStyle='light-content' backgroundColor={Colors.primaryColor} />
-            <View style={{
-                flex: 1,
-                paddingVertical: 40,
-                paddingHorizontal: 16,
-                backgroundColor: Colors.backgroundColor,
-                position: 'relative'
-            }}>
+            {loading ? (
+                <StatusBar barStyle='light-content' backgroundColor={Colors.primaryColor} />
+            ) : size(questions) == 0 ? (
+                <Text>No se encontraron Preguntas</Text>
+            ) : (
+                <View style={{
+                    flex: 1,
+                    paddingVertical: 40,
+                    paddingHorizontal: 16,
+                    backgroundColor: Colors.backgroundColor,
+                    position: 'relative'
+                }}>
 
-                {/* ProgressBar */}
-                {renderProgressBar()}
+                    {/* getFromApi */}
+                    {/*getFrom()*/}
 
-                {/* Question */}
-                {renderQuestion()}
-            <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', flexWrap: 'wrap', alignItems: 'center' }}>
-                {data.map((p, i) => {
-                    return <Donut key={i} percentage={p.percentage} color={p.color} delay={500 + 100 * i} max={p.max} />
-                })}
-            </View>
-                {/* Options */}
-                {renderOptions()}
+                    {/* ProgressBar */}
+                    {renderProgressBar()}
 
-                {/* Next Button */}
-                {renderNextButton()}
+                    {/* Question */}
+                    {renderQuestion()}
 
-                {/* Score Modal */}
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={showScoreModal}
-                >
-                    <View style={{
-                        flex: 1,
-                        backgroundColor: Colors.primaryColor,
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }}>
+                    {/* Options */}
+                    {renderOptions()}
+
+                    {/* Next Button */}
+                    {renderNextButton()}
+
+                    {/* Score Modal */}
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={showScoreModal}
+                    >
                         <View style={{
-                            backgroundColor: Colors.blueColor,
-                            width: '90%',
-                            borderRadius: 20,
-                            padding: 20,
-                            alignItems: 'center'
+                            flex: 1,
+                            backgroundColor: Colors.primaryColor,
+                            alignItems: 'center',
+                            justifyContent: 'center'
                         }}>
-                            <Text style={{ fontSize: 30, fontWeight: 'bold' }}>{score > (allQuestions.length / 2) ? '¡Lo lograste!' : 'Oh vaya, quizá la próxima...'}</Text>
-
                             <View style={{
-                                flexDirection: 'row',
-                                justifyContent: 'flex-start',
-                                alignItems: 'center',
-                                marginVertical: 20
+                                backgroundColor: Colors.blueColor,
+                                width: '90%',
+                                borderRadius: 20,
+                                padding: 20,
+                                alignItems: 'center'
                             }}>
-                                <Text style={{
-                                    fontSize: 30,
-                                    color: score > (allQuestions.length / 2) ? Colors.success : Colors.error
-                                }}>{score}</Text>
-                                <Text style={{
-                                    fontSize: 20, color: Colors.black
-                                }}>/ {allQuestions.length}</Text>
-                            </View>
-                            {/* Retry Quiz button */}
-                            <TouchableOpacity
-                                onPress={restartQuiz}
-                                style={{
-                                    backgroundColor: Colors.accent,
-                                    padding: 20, width: '100%', borderRadius: 20
+                                <Text style={{ fontSize: 30, fontWeight: 'bold' }}>{score > (size(questions) / 2) ? '¡Lo lograste!' : 'Oh vaya, quizá la próxima...'}</Text>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'flex-start',
+                                    alignItems: 'center',
+                                    marginVertical: 20
                                 }}>
-                                <Text style={{
-                                    textAlign: 'center', color: Colors.blueColor, fontSize: 20
-                                }}>Volver a intentarlo</Text>
-                            </TouchableOpacity>
+                                    <Text style={{
+                                        fontSize: 30,
+                                        color: score > (size(questions) / 2) ? Colors.success : Colors.error
+                                    }}>{score}</Text>
+                                    <Text style={{
+                                        fontSize: 20, color: Colors.black
+                                    }}>/ {size(questions)}</Text>
+                                </View>
+                                {/* Retry Quiz button */}
+                                <TouchableOpacity
+                                    onPress={restartQuiz}
+                                    style={{
+                                        backgroundColor: Colors.accent,
+                                        padding: 20, width: '100%', borderRadius: 20
+                                    }}>
+                                    <Text style={{
+                                        textAlign: 'center', color: Colors.blueColor, fontSize: 20
+                                    }}>Volver a intentarlo</Text>
+                                </TouchableOpacity>
+
+                            </View>
 
                         </View>
+                    </Modal>
 
-                    </View>
-                </Modal>
-
-            </View>
-        </SafeAreaView>
+                </View>
+            )}
+        </SafeAreaView >
     )
 }
 
