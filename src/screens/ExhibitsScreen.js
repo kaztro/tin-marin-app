@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { getAllExhibitions } from '../api/exhibitions';
-import Card from '../components/Card';
+import Card from '../components/Card2';
 import Colors from '../constants/Colors';
 import { size } from 'lodash';
 
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontFamily: 'NunitoSans-Bold',
+    fontFamily: 'BubblegumSans-Regular',
     marginTop: 20,
     fontSize: 30,
     color: '#566573',
