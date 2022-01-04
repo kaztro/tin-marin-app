@@ -8,23 +8,14 @@ import {
   ScrollView,
   TouchableOpacity,
   FlatList,
-  Dimensions,
-  Image
+  Dimensions
 } from 'react-native';
-//new image imports for the new menu design
-import playground from '../assets/icons/playground.png';
-import newnormality from '../assets/icons/newnormality.png';
-import suggestion from '../assets/icons/suggestion.png';
-import faq from '../assets/icons/faq.png';
-import solidarity from '../assets/icons/solidarity.png';
-import calendar from '../assets/icons/calendar.png';
-import man from '../assets/icons/man.png';
-
-//new images for the menu icons
-import covidicon from '../assets/icons/covidicon.png';
-import covidicon2 from '../assets/icons/covidicon2.png';
-import conocenosicon from '../assets/icons/conocenosicon.png';
-import sitiosicon from '../assets/icons/sitiosicon.png';
+import Covid from '../assets/Covid.jpeg';
+import FAQs from '../assets/FAQs.jpeg';
+import WebLinks from '../assets/WebLinks.jpg';
+import Sugerencias from '../assets/Sugerencias.png';
+import Exhibicion from '../assets/Exhibicion.jpg';
+import Quiz from '../assets/Quiz.jpg';
 
 import {
   playButtonPress,
@@ -48,30 +39,51 @@ import ConocenosMas from '../assets/ConocenosMas.jpg';
  * @property {ImageBackground} imageStyle propiedad para cambiar los estilos especificos del background
  * 
  *  */
-
 const HomeScreen = ({ navigation }) => {
   return (
     
-    <ScrollView  style={styles.scrollView}>
+    <ScrollView style={styles.scrollView}>
       <View style={styles.view}>
-
+        <View style={styles.line}></View>
         <TouchableOpacity
           onPressIn={playButtonPress}
           onPress={() => {
             navigation.navigate('exhibits');
           }}
           style={styles.cardContainer}>
-            <Image
-              style = {{width:100, height:100}}
-              resizeMode = "contain"
-              source={playground}
-            />
+          <ImageBackground
+            imageStyle={{ opacity: 0.5, ...styles.image }}
+            source={Exhibicion}
+            style={styles.card}
+            borderRadius={10}>
             <View style={styles.textContainer}>
               <Text style={styles.text}>Exhibiciones</Text>
               <Text style={styles.text2}>
-                Ven a conocer todas las exhibiciones disponibles
+                Ven y conoce todas nuestras exhibiciones disponibles para que
+                las puedas visitar !
               </Text>
             </View>
+          </ImageBackground>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPressIn={wowButton}
+          onPress={() => {
+            navigation.navigate('quiz');
+          }}
+          style={{ ...styles.cardContainer }}>
+          <ImageBackground
+            imageStyle={{ opacity: 0.5, ...styles.image }}
+            source={Quiz}
+            style={styles.card}
+            borderRadius={10}>
+            <View style={styles.textContainer}>
+              <Text style={styles.text}>Realizar un quiz</Text>
+              <Text style={styles.text2}>
+                ¿Haz visto nuestras exhibiciones? ¡Pon a prueba tus conocimientos!
+              </Text>
+            </View>
+          </ImageBackground>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -80,17 +92,18 @@ const HomeScreen = ({ navigation }) => {
             navigation.navigate('covid');
           }}
           style={styles.cardContainer}>
-            <Image
-              style = {{width:100, height:100}}
-              resizeMode = "contain"
-              source={covidicon2}
-            />
+          <ImageBackground
+            imageStyle={{ opacity: 0.5, ...styles.image }}
+            source={Covid}
+            style={styles.card}
+            borderRadius={10}>
             <View style={styles.textContainer}>
-              <Text style={styles.textYellow}>Recomendaciones Covid-19</Text>
+              <Text style={styles.text}>Recomendaciones Covid-19</Text>
               <Text style={styles.text2}>
-                Toma en cuenta estas recomendaciones para venir al museo
+                Toma en cuenta las siguientes recomendaciones al visitarnos!
               </Text>
             </View>
+          </ImageBackground>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -99,18 +112,19 @@ const HomeScreen = ({ navigation }) => {
             navigation.navigate('knowMore');
           }}
           style={styles.cardContainer}>
-            <Image
-              style = {{width:100, height:100}}
-              resizeMode = "contain"
-              source={conocenosicon}
-            />
+          <ImageBackground
+            imageStyle={{ opacity: 0.5, ...styles.image }}
+            source={ConocenosMas}
+            style={styles.card}
+            borderRadius={10}>
             <View style={styles.textContainer}>
-              <Text style={styles.textMorado}>Conocenos Más</Text>
+              <Text style={styles.text}>Conocenos Más</Text>
               <Text style={styles.text2}>
                 Aqui puedes encontrar informacion de contacto, estamos a la
                 orden!
               </Text>
             </View>
+          </ImageBackground>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -119,11 +133,11 @@ const HomeScreen = ({ navigation }) => {
             navigation.navigate('comments');
           }}
           style={styles.cardContainer}>
-            <Image
-              style = {{width:100, height:100}}
-              resizeMode = "contain"
-              source={suggestion}
-            />
+          <ImageBackground
+            imageStyle={{ opacity: 0.5, ...styles.image }}
+            source={Sugerencias}
+            style={styles.card}
+            borderRadius={10}>
             <View style={styles.textContainer}>
               <Text style={styles.text}>Sugerencias</Text>
               <Text style={styles.text2}>
@@ -131,6 +145,7 @@ const HomeScreen = ({ navigation }) => {
                 inquietud!
               </Text>
             </View>
+          </ImageBackground>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -139,17 +154,18 @@ const HomeScreen = ({ navigation }) => {
             navigation.navigate('FAQs');
           }}
           style={styles.cardContainer}>
-            <Image
-              style = {{width:100, height:100}}
-              resizeMode = "contain"
-              source={faq}
-            />
+          <ImageBackground
+            imageStyle={{ opacity: 0.5, ...styles.image }}
+            source={FAQs}
+            style={styles.card}
+            borderRadius={10}>
             <View style={styles.textContainer}>
-              <Text style={styles.textYellow}>Preguntas Frecuentes</Text>
+              <Text style={styles.text}>Preguntas Frecuentes</Text>
               <Text style={styles.text2}>
                 Por si tienes alguna consulta para resolver de forma rápida!
               </Text>
             </View>
+          </ImageBackground>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -157,18 +173,19 @@ const HomeScreen = ({ navigation }) => {
           onPress={() => {
             navigation.navigate('WebLinks');
           }}
-          style={{ ...styles.cardContainer}}>
-            <Image
-              style = {{width:100, height:100}}
-              resizeMode = "contain"
-              source={sitiosicon}
-            />
+          style={{ ...styles.cardContainer, marginBottom: 30 }}>
+          <ImageBackground
+            imageStyle={{ opacity: 0.5, ...styles.image }}
+            source={WebLinks}
+            style={styles.card}
+            borderRadius={10}>
             <View style={styles.textContainer}>
-              <Text style={styles.textMorado}>Sitios de Interés</Text>
+              <Text style={styles.text}>Sitios de Interés</Text>
               <Text style={styles.text2}>
-                Si deseas profundizar un poco más en otros temas relevantes
+                Si deseas profundizar un poco más en otros temas relevantes!
               </Text>
             </View>
+          </ImageBackground>
         </TouchableOpacity>
 
       </View>
@@ -182,61 +199,56 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    marginTop:0,
-    backgroundColor:'#FFF4BD',
+  },
+  image: {
+    width: '100%',
   },
   view: {
+    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignItems: 'center',
+    padding: 2,
   },
+  title: {
+    fontFamily: 'NunitoSans-Bold',
+    marginTop: 20,
+    fontSize: 30,
+    color: '#566573',
+    fontWeight: 'bold',
+  },
+  line: {
+    height: 1,
+    width: '90%',
+    backgroundColor: '#D5D8DC',
+  },
+  card: {
+    width: '90%',
+    height: 200,
+    backgroundColor: 'rgb(0,0,0)',
+    borderRadius: 10,
+  },
+
   cardContainer: {
     margin: 2,
-    padding: 10,
     width: Dimensions.get('window').width /2 -6,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    height: 250,
+    height: 200,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 3,
-    
-    shadowColor: '#470000',
-    shadowOffset: {width: 0, height: 1},
-    shadowOpacity: 0.2,
-    elevation: 3,
+    marginTop: 20,
   },
   textContainer: {
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: 10,
+    marginLeft: 20,
+    marginTop: 20,
   },
   text: {
-    fontFamily: 'Inter',
-    color: '#E50E23',
-    fontSize: 18,
-    textAlign: "center",
-    fontWeight: 'bold',
-  },
-  textYellow: {
-    fontFamily: 'Inter',
-    color: '#FABA00',
-    fontSize: 18,
-    textAlign: "center",
-    fontWeight: 'bold',
-  },
-  textMorado: {
-    fontFamily: 'Inter',
-    color: '#93117D',
-    fontSize: 18,
-    textAlign: "center",
-    fontWeight: 'bold',
+    fontFamily: 'NunitoSans-Bold',
+    color: 'white',
+    fontSize: 25,
   },
   text2: {
-    fontFamily: 'Inter',
-    color: '#393838',
-    fontSize: 12,
-    textAlign: "center"
+    fontFamily: 'NunitoSans-Bold',
+    color: 'white',
+    fontSize: 15,
   },
 });
 

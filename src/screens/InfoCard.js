@@ -7,6 +7,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { map, size } from 'lodash';
 import Colors from '../constants/Colors';
 import StarRatings from './StarRatings';
+import curiosidades1 from '../assets/icons/curiosidades1.png';
+
 
 /**
  * Pantalla que muestra los detalles de una Exhibición.
@@ -87,9 +89,9 @@ const InfoModal = ({ setVisible }) => {
   return (
     <View style={styles.viewModal}>
       <IconButton
-        icon="information-variant"
-        size={30}
-        color="#000"
+        icon="google-downasaur"
+        size={40}
+        color="#97be0d"
         style={styles.info}
         onPress={() => setVisible(true)}
       />
@@ -103,11 +105,12 @@ const InfoModal = ({ setVisible }) => {
 const InfoTitle = ({ exhibition }) => {
   return (
     <View style={styles.viewInfo}>
-      <Title style={{ color: '#F29F05', fontWeight: 'bold', fontSize: 23 }}>
+      <Title style={{ color: '#F29F05', fontWeight: 'bold', fontSize: 23, textAlign: 'center' }}>
         {exhibition.name}
       </Title>
     </View>
   );
+  
 };
 
 /**
