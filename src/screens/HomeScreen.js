@@ -72,8 +72,7 @@ const HomeScreen = ({ navigation }) => {
                 Ven a conocer todas las exhibiciones disponibles
               </Text>
             </View>
-        </TouchableOpacity>
-{/* 
+        </TouchableOpacity> 
         <TouchableOpacity
           onPressIn={heyListenButton}
           onPress={() => {
