@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, SafeAreaView, View, Image, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  SafeAreaView,
+  View,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import { IconButton, Text, Title } from 'react-native-paper';
 import { getExhibitionById } from '../api/exhibitions';
 //import { getQuizById } from '../api/quizzes'
+import { getExhibitionByImage } from '../api/exhibitions';
 import ModalBody from '../components/ModalBody';
 import { ScrollView } from 'react-native-gesture-handler';
 import { map, size } from 'lodash';
 import Colors from '../constants/Colors';
+import { SliderBox } from 'react-native-image-slider-box';
 import StarRatings from './StarRatings';
 
 /**
@@ -30,6 +38,7 @@ import StarRatings from './StarRatings';
  * @see https://lodash.com/docs/4.17.15#map
  * @return {SafeAreaView} Retorna un componente que contiene maquetada la vista
  */
+
 const InfoCard = ({ route, navigation }) => {
   const { _id } = route.params;
   const [visible, setVisible] = useState(false);
@@ -47,7 +56,7 @@ const InfoCard = ({ route, navigation }) => {
 
   if (!exhibition) return null;
 
-  const [imageURL] = exhibition.images;
+  const imageURL = exhibition.images;
   const [logoURL] = exhibition.sponsorLogo;
 
   return (
@@ -86,10 +95,19 @@ export default InfoCard;
  *@ignore
  */
 const InfoImage = ({ path }) => {
+  const [imgActive, setimgActive] = useState(0);
+
   return (
-    <View style={styles.viewPoster}>
-      <Image style={styles.poster} source={{ uri: path }} />
-    </View>
+    /* <View style={styles.viewPoster}>
+      {path.map((e, index) => (
+        <Image key={e} style={styles.poster} source={{ uri: e }} />
+      ))}
+    </View>*/
+    <SliderBox
+      images={path}
+      onCurrentImagePressed={(index) => console.warn(`image ${index} pressed`)}
+      currentImageEmitter={(index) => console.warn(`current pos is: ${index}`)}
+    />
   );
 };
 
@@ -284,5 +302,19 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 4,
     marginBottom: 2,
+  },
+  wrapDot: {
+    position: 'absolute',
+    bottom: 0,
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
+  dotActivate: {
+    margin: 3,
+    color: 'black',
+  },
+  dot: {
+    margin: 3,
+    color: 'white',
   },
 });

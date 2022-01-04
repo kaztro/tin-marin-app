@@ -68,6 +68,26 @@ const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity
+          onPressIn={wowButton}
+          onPress={() => {
+            navigation.navigate('quiz');
+          }}
+          style={{ ...styles.cardContainer, marginBottom: 30 }}>
+          <ImageBackground
+            imageStyle={{ opacity: 0.5, ...styles.image }}
+            source={Quiz}
+            style={styles.card}
+            borderRadius={10}>
+            <View style={styles.textContainer}>
+              <Text style={styles.text}>Realizar un quiz</Text>
+              <Text style={styles.text2}>
+                ¿Haz visto nuestras exhibiciones? ¡Pon a prueba tus conocimientos!
+              </Text>
+            </View>
+          </ImageBackground>
+        </TouchableOpacity>
+
+        <TouchableOpacity
           onPressIn={heyListenButton}
           onPress={() => {
             navigation.navigate('covid');
