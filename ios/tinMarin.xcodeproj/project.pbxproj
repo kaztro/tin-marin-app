@@ -34,6 +34,8 @@
 		7CA85B6C05A548B6890446D5 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01578356B44F49F4B138DE30 /* Zocial.ttf */; };
 		E49B54B5ABB24669A5D83B63 /* NunitoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E19C58B8AA6F4D41AF94CDF8 /* NunitoSans-Bold.ttf */; };
 		F8C694165FD84FFABB9621C8 /* NunitoSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8AB66887D18A4F2EA0DC93A8 /* NunitoSans-Italic.ttf */; };
+		1C78D608F19C4AE59B22ECC0 /* Boogaloo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A6C5B28116D8478FB011725B /* Boogaloo-Regular.ttf */; };
+		AF23555C3C7546ACB366BA19 /* BubblegumSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 13FBAC6943AA446693FF4506 /* BubblegumSans-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +89,8 @@
 		01578356B44F49F4B138DE30 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		E19C58B8AA6F4D41AF94CDF8 /* NunitoSans-Bold.ttf */ = {isa = PBXFileReference; name = "NunitoSans-Bold.ttf"; path = "../src/assets/fonts/NunitoSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		8AB66887D18A4F2EA0DC93A8 /* NunitoSans-Italic.ttf */ = {isa = PBXFileReference; name = "NunitoSans-Italic.ttf"; path = "../src/assets/fonts/NunitoSans-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A6C5B28116D8478FB011725B /* Boogaloo-Regular.ttf */ = {isa = PBXFileReference; name = "Boogaloo-Regular.ttf"; path = "../src/assets/fonts/Boogaloo-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		13FBAC6943AA446693FF4506 /* BubblegumSans-Regular.ttf */ = {isa = PBXFileReference; name = "BubblegumSans-Regular.ttf"; path = "../src/assets/fonts/BubblegumSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +219,8 @@
 				01578356B44F49F4B138DE30 /* Zocial.ttf */,
 				E19C58B8AA6F4D41AF94CDF8 /* NunitoSans-Bold.ttf */,
 				8AB66887D18A4F2EA0DC93A8 /* NunitoSans-Italic.ttf */,
+				A6C5B28116D8478FB011725B /* Boogaloo-Regular.ttf */,
+				13FBAC6943AA446693FF4506 /* BubblegumSans-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -376,6 +382,8 @@
 				7CA85B6C05A548B6890446D5 /* Zocial.ttf in Resources */,
 				E49B54B5ABB24669A5D83B63 /* NunitoSans-Bold.ttf in Resources */,
 				F8C694165FD84FFABB9621C8 /* NunitoSans-Italic.ttf in Resources */,
+				1C78D608F19C4AE59B22ECC0 /* Boogaloo-Regular.ttf in Resources */,
+				AF23555C3C7546ACB366BA19 /* BubblegumSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

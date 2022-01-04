@@ -15,6 +15,7 @@ import { map, size } from 'lodash';
 import Colors from '../constants/Colors';
 import { SliderBox } from 'react-native-image-slider-box';
 import StarRatings from './StarRatings';
+import curiosidades1 from '../assets/icons/curiosidades1.png';
 
 /**
  * Pantalla que muestra los detalles de una Exhibición.
@@ -59,12 +60,13 @@ const InfoCard = ({ route, navigation }) => {
   const [logoURL] = exhibition.sponsorLogo;
 
   return (
-    <SafeAreaView>
+    <SafeAreaView >
       <ScrollView showsVerticalScrollIndicator={false}>
         <InfoImage path={imageURL} />
         <InfoModal setVisible={setVisible} />
         <InfoTitle exhibition={exhibition} />
         <Text style={styles.overview}>{exhibition.description}</Text>
+        <InfoFooter exhibition={exhibition} />
         {logoURL && <InfoSponsor url={logoURL} />}
         <InfoFooter exhibition={exhibition} />
         <StarRatings />
@@ -117,9 +119,9 @@ const InfoModal = ({ setVisible }) => {
   return (
     <View style={styles.viewModal}>
       <IconButton
-        icon="information-variant"
-        size={30}
-        color="#000"
+        icon="google-downasaur"
+        size={40}
+        color="#97be0d"
         style={styles.info}
         onPress={() => setVisible(true)}
       />
@@ -133,11 +135,12 @@ const InfoModal = ({ setVisible }) => {
 const InfoTitle = ({ exhibition }) => {
   return (
     <View style={styles.viewInfo}>
-      <Title style={{ color: '#F29F05', fontWeight: 'bold', fontSize: 23 }}>
+      <Title style={{ color: '#F29F05', fontWeight: 'bold', fontSize: 23, textAlign: 'center' }}>
         {exhibition.name}
       </Title>
     </View>
   );
+  
 };
 
 /**
@@ -296,8 +299,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   imgSponsor: {
-    width: 160,
-    height: 100,
+    width: 120,
+    height: 60,
     alignSelf: 'center',
     marginTop: 4,
     marginBottom: 2,
