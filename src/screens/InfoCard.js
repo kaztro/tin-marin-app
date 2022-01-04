@@ -107,6 +107,7 @@ const InfoImage = ({ path }) => {
     </View>*/
     <SliderBox
       images={path}
+      sliderBoxHeight={400}
       onCurrentImagePressed={(index) => console.warn(`image ${index} pressed`)}
       currentImageEmitter={(index) => console.warn(`current pos is: ${index}`)}
     />
