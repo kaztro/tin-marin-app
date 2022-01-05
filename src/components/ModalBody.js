@@ -31,13 +31,13 @@ const ModalBody = ({ showModal, visible, curiousInfo }) => {
           slideFrom: 'bottom',
         })
       }
-      modalTitle={<ModalTitle title="¿Sabías qué?" />}
+      modalTitle={<ModalTitle title="¿Sabías qué?" style = {styles.modalwWhole}/>}
       footer={
-        <ModalFooter>
+        <ModalFooter style = {styles.modalwWhole}>
           <ModalButton text="OK" onPress={showModal} />
         </ModalFooter>
       }>
-      <ModalContent>
+      <ModalContent  style = {styles.modalwWhole}>
         <MContent curiousInfo={curiousInfo} />
       </ModalContent>
     </Modal>
@@ -49,4 +49,10 @@ export default ModalBody;
 /**
  * @ignore
  */
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+
+  modalwWhole: {
+    backgroundColor: '#fff'
+  }
+
+});
