@@ -1,18 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StatusBar, Image, TouchableOpacity, Modal, Animated } from 'react-native'
 import Colors from '../constants/Colors';
-import { getQuizById } from '../api/quizzes'
+import { getAllQuizzes } from '../api/quizzes'
 //import questions from '../dummy-data/questions';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { map, size } from 'lodash';
 import { createIconSetFromFontello } from 'react-native-vector-icons';
 
 const Quiz = ({ route }) => {
-    const questionsIds = route.params;
+    const questionE = route.params;
+    //const [allQ, setAllQ] = useState([])
     const [questions, setQuestions] = useState([]);
     const [loading, setLoading] = useState(true);
-    console.log(size(questions))
+    //console.log(questionE);
 
+    useEffect(() => {
+        getAllQuizzes().then((response) => {
+            map(response, (q) => {
+                //console.log(q);
+                if (q.exhibition == questionE) {
+                    setQuestions(questions => [...questions, q]);
+                }
+            });
+        });
+        setLoading(false);
+    }, []);
+
+    //console.log('asdasdasdasdasdad', questions);
+
+    /*
     useEffect(() => {
         map(questionsIds, (_id, index) => {
             //console.log(index, _id);
@@ -32,7 +48,7 @@ const Quiz = ({ route }) => {
             });
         });
         setLoading(false);
-    }, []);
+    }, []);*/
 
     //if (!questions) return null;
 
@@ -116,7 +132,7 @@ const Quiz = ({ route }) => {
                 }}>{
                         //questions.question
                         questions[currentQuestionIndex]?.question
-                }</Text>
+                    }</Text>
             </View>
         )
     }
@@ -126,7 +142,7 @@ const Quiz = ({ route }) => {
             <View>
                 {
                     questions[currentQuestionIndex]?.options.map(option => (
-                    //questions.options.map(option => (
+                        //questions.options.map(option => (
                         <TouchableOpacity
                             onPress={() => validateAnswer(option)}
                             disabled={isOptionsDisabled}

@@ -50,7 +50,7 @@ const InfoCard = ({ route, navigation }) => {
 
   useEffect(() => {
     getExhibitionById(_id).then((response) => {
-      setQuestions(response.questions);
+      setQuestions(response.name);
       setExhibition(response);
     });
   }, []);
@@ -59,7 +59,7 @@ const InfoCard = ({ route, navigation }) => {
 
   const imageURL = exhibition.images;
   const [logoURL] = exhibition.sponsorLogo;
-  console.log(exhibition)
+  //console.log(exhibition)
 
   return (
     <SafeAreaView >
