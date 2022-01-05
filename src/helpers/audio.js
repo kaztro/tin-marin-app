@@ -91,6 +91,12 @@ export const ohhButton = () =>{
   ohh.play();
 }
 
+const playQuiz = new Sound (require('../audio/quiz.mp3'), error => console.log(error));
+export const quizButton = () => {
+  playQuiz.play();
+}
 
-
-
+const select = new Sound (require('../audio/select.mp3'), error => console.log(error))
+export const selectButton = () => {
+  select.play();
+}

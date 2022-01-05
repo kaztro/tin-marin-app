@@ -27,12 +27,7 @@ import conocenosicon from '../assets/icons/conocenosicon.png';
 import sitiosicon from '../assets/icons/sitiosicon.png';
 
 import {
-  playButtonPress,
-  heyListenButton,
-  wowButton,
-  msnButton,
-  catcButton,
-  ohhButton,
+  selectButton
 } from '../helpers/audio';
 import ConocenosMas from '../assets/ConocenosMas.jpg';
 
@@ -56,7 +51,7 @@ const HomeScreen = ({ navigation }) => {
       <View style={styles.view}>
 
         <TouchableOpacity
-          onPressIn={playButtonPress}
+          onPressIn={selectButton}
           onPress={() => {
             navigation.navigate('exhibits');
           }}
@@ -74,7 +69,7 @@ const HomeScreen = ({ navigation }) => {
             </View>
         </TouchableOpacity> 
         <TouchableOpacity
-          onPressIn={heyListenButton}
+          onPressIn={selectButton}
           onPress={() => {
             navigation.navigate('covid');
           }}
@@ -93,7 +88,7 @@ const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPressIn={ohhButton}
+          onPressIn={selectButton}
           onPress={() => {
             navigation.navigate('knowMore');
           }}
@@ -113,7 +108,7 @@ const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPressIn={msnButton}
+          onPressIn={selectButton}
           onPress={() => {
             navigation.navigate('comments');
           }}
@@ -133,7 +128,7 @@ const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPressIn={catcButton}
+          onPressIn={selectButton}
           onPress={() => {
             navigation.navigate('FAQs');
           }}
@@ -152,7 +147,7 @@ const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPressIn={wowButton}
+          onPressIn={selectButton}
           onPress={() => {
             navigation.navigate('WebLinks');
           }}

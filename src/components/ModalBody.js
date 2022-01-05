@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { playButtonPress } from '../helpers/audio';
+import { wowButton } from '../helpers/audio';
 import {
   Modal,
   ModalButton,
@@ -24,6 +24,7 @@ import MContent from './Modal';
 const ModalBody = ({ showModal, visible, curiousInfo }) => {
   return (
     <Modal
+      onShow={wowButton}
       visible={visible}
       onTouchOutside={showModal}
       modalAnimation={

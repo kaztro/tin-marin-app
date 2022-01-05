@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontFamily: 'NunitoSans-Bold',
+    fontFamily: 'BubblegumSans-Regular',
     marginTop: 20,
     fontSize: 30,
     color: '#566573',

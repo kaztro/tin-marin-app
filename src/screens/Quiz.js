@@ -2,22 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StatusBar, Image, TouchableOpacity, Modal, Animated } from 'react-native'
 import Colors from '../constants/Colors';
 import { getAllQuizzes } from '../api/quizzes'
-//import questions from '../dummy-data/questions';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { map, size } from 'lodash';
 import { createIconSetFromFontello } from 'react-native-vector-icons';
 
-const Quiz = ({ route }) => {
+const Quiz = ({ route, navigation } ) => {
     const questionE = route.params;
-    //const [allQ, setAllQ] = useState([])
     const [questions, setQuestions] = useState([]);
     const [loading, setLoading] = useState(true);
-    //console.log(questionE);
 
     useEffect(() => {
         getAllQuizzes().then((response) => {
             map(response, (q) => {
-                //console.log(q);
                 if (q.exhibition == questionE) {
                     setQuestions(questions => [...questions, q]);
                 }
@@ -26,34 +22,6 @@ const Quiz = ({ route }) => {
         setLoading(false);
     }, []);
 
-    //console.log('asdasdasdasdasdad', questions);
-
-    /*
-    useEffect(() => {
-        map(questionsIds, (_id, index) => {
-            //console.log(index, _id);
-            getQuizById(_id).then((response) => {
-            
-                if (questions.length = 0) {
-                    setQuestions(response);
-                    //setQuestions(questions => [...questions, response])
-                    console.log("entra en no nulo");
-                }else {
-                    //
-                    setQuestions(questions => [...questions, response]);
-                    console.log("entra en NULAZO");
-                }
-                //console.log('response', response);
-               
-            });
-        });
-        setLoading(false);
-    }, []);*/
-
-    //if (!questions) return null;
-
-    //console.log('questions2', size(questions));
-    //const allQuestions = questions;
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [currentOptionSelected, setCurrentOptionSelected] = useState(null);
     const [correctOption, setCorrectOption] = useState(null);
@@ -297,7 +265,7 @@ const Quiz = ({ route }) => {
                                 padding: 20,
                                 alignItems: 'center'
                             }}>
-                                <Text style={{ fontSize: 30, fontWeight: 'bold' }}>{score > (size(questions) / 2) ? '¡Lo lograste!' : 'Oh vaya, quizá la próxima...'}</Text>
+                                <Text style={{ fontSize: 30, fontWeight: 'bold' }}>{score > (size(questions) / 2) ? '¡Bien hecho, Lo lograste!' : '¡Intentalo de nuevo!'}</Text>
 
                                 <View style={{
                                     flexDirection: 'row',
@@ -318,11 +286,21 @@ const Quiz = ({ route }) => {
                                     onPress={restartQuiz}
                                     style={{
                                         backgroundColor: Colors.accent2,
-                                        padding: 20, width: '100%', borderRadius: 20
+                                        padding: 20, width: '100%', borderRadius: 40, marginBottom: 20
                                     }}>
                                     <Text style={{
                                         textAlign: 'center', color: Colors.black, fontSize: 20
-                                    }}>Volver a intentarlo</Text>
+                                    }}>Vuelve a intentarlo</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    onPress={() => { navigation.goBack() }}
+                                    style={{
+                                        backgroundColor: Colors.accent2,
+                                        padding: 20, width: '100%', borderRadius: 40
+                                    }}>
+                                    <Text style={{
+                                        textAlign: 'center', color: Colors.black, fontSize: 20
+                                    }}>Salir</Text>
                                 </TouchableOpacity>
 
                             </View>

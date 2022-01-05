@@ -5,18 +5,22 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import { IconButton, Text, Title } from 'react-native-paper';
 import { getExhibitionById } from '../api/exhibitions';
-//import { getQuizById } from '../api/quizzes'
 import ModalBody from '../components/ModalBody';
 import { ScrollView } from 'react-native-gesture-handler';
 import { map, size } from 'lodash';
 import Colors from '../constants/Colors';
 import { SliderBox } from 'react-native-image-slider-box';
-import StarRatings from './StarRatings';
 import curiosidades1 from '../assets/icons/curiosidades1.png';
 import exam from '../assets/icons/exam.png';
+
+import {
+  wowButton,
+  quizButton
+} from '../helpers/audio';
 
 /**
  * Pantalla que muestra los detalles de una Exhibición.
@@ -46,7 +50,9 @@ const InfoCard = ({ route, navigation }) => {
   const [exhibition, setExhibition] = useState(null);
   const [questions, setQuestions] = useState(null);
 
-  const showModal = () => setVisible(!visible);
+  const showModal = () => {
+    setVisible(!visible);
+  }
 
   useEffect(() => {
     getExhibitionById(_id).then((response) => {
@@ -59,12 +65,12 @@ const InfoCard = ({ route, navigation }) => {
 
   const imageURL = exhibition.images;
   const [logoURL] = exhibition.sponsorLogo;
-  //console.log(exhibition)
+
 
   return (
     <SafeAreaView >
       <ScrollView showsVerticalScrollIndicator={false}>
-        <InfoTitle exhibition={exhibition}/>
+        <InfoTitle exhibition={exhibition} />
         <InfoImage path={imageURL} />
         {logoURL && <InfoSponsor url={logoURL} />}
         <Text style={styles.overview}>{exhibition.description}</Text>
@@ -72,12 +78,12 @@ const InfoCard = ({ route, navigation }) => {
         <View style={styles.btnCuriosidades}>
           <InfoModal setVisible={setVisible} />
           <TouchableOpacity
+            onPressIn={quizButton}
             onPress={() => {
-              //console.log(questions);
               navigation.navigate('quiz', questions);
             }}
-            >
-            <Image style={styles.imgQuiz} resizeMode = "contain" source={exam}/>
+          >
+            <Image style={styles.imgQuiz} resizeMode="contain" source={exam} />
           </TouchableOpacity>
         </View>
         <InfoFooter exhibition={exhibition} />
@@ -117,7 +123,7 @@ const InfoImage = ({ path }) => {
       circleLoop
       resizeMethod={'resize'}
       resizeMode={'cover'}
-      ImageComponentStyle={{borderRadius: 15, width: '90%', marginTop: 5}}
+      ImageComponentStyle={{ borderRadius: 15, width: '90%', marginTop: 5 }}
       imageLoadingColor="#2196F3"
     />
   );
@@ -130,11 +136,11 @@ const InfoModal = ({ setVisible }) => {
   return (
     <View >
       <TouchableOpacity onPress={() => setVisible(true)}>
-          <Image style={styles.info} 
-              resizeMode = "contain"
-              source={curiosidades1}
-              />
-        </TouchableOpacity>
+        <Image style={styles.info}
+          resizeMode="contain"
+          source={curiosidades1}
+        />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -150,7 +156,7 @@ const InfoTitle = ({ exhibition }) => {
       </Title>
     </View>
   );
-  
+
 };
 
 /**
@@ -233,7 +239,7 @@ const FooterItem = ({ title, desc, icon }) => {
  *@ignore
  */
 const styles = StyleSheet.create({
-  btnCuriosidades:{
+  btnCuriosidades: {
     marginTop: 20,
     marginHorizontal: 20,
     flexDirection: 'row',
@@ -241,16 +247,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
 
   },
-  btnQuiz:{
-    width: '25%', 
-    backgroundColor: Colors.accent, 
-    padding: 10, 
+  btnQuiz: {
+    width: '25%',
+    backgroundColor: Colors.accent,
+    padding: 10,
     borderRadius: 100,
     justifyContent: 'center',
     alignContent: 'center',
     marginTop: 10,
   },
-  imgQuiz:{
+  imgQuiz: {
     width: 100,
     height: 100,
   },
@@ -324,7 +330,7 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 16,
   },
-  viewSponsor:{
+  viewSponsor: {
     justifyContent: 'flex-start',
     alignItems: 'flex-end',
   },
@@ -334,7 +340,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     marginTop: -390,
     marginRight: 30,
-    borderRadius:4,
+    borderRadius: 4,
     borderColor: '#000',
     borderWidth: 0.15,
   },
