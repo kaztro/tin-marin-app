@@ -16,6 +16,7 @@ import Colors from '../constants/Colors';
 import { SliderBox } from 'react-native-image-slider-box';
 import StarRatings from './StarRatings';
 import curiosidades1 from '../assets/icons/curiosidades1.png';
+import exam from '../assets/icons/exam.png';
 
 /**
  * Pantalla que muestra los detalles de una Exhibición.
@@ -63,24 +64,25 @@ const InfoCard = ({ route, navigation }) => {
   return (
     <SafeAreaView >
       <ScrollView showsVerticalScrollIndicator={false}>
+        <InfoTitle exhibition={exhibition}/>
         <InfoImage path={imageURL} />
-        <InfoModal setVisible={setVisible} />
-        <InfoTitle exhibition={exhibition} />
-        <Text style={styles.overview}>{exhibition.description}</Text>
-        <InfoFooter exhibition={exhibition} />
         {logoURL && <InfoSponsor url={logoURL} />}
-        <StarRatings />
-        <TouchableOpacity
-          onPress={() => {
-            //console.log(questions);
-            navigation.navigate('quiz', questions);
-          }}
-          style={{
-            marginTop: 20, width: '100%', backgroundColor: Colors.accent, padding: 20, borderRadius: 5
-          }}>
-          <Text style={{ fontSize: 20, color: Colors.white, textAlign: 'center' }}>Realiza un test</Text>
-        </TouchableOpacity>
+        <Text style={styles.overview}>{exhibition.description}</Text>
+        <Text style={styles.overview}>Presiona el botón de la izquierda si quieres leer un dato curioso y presiona el de la derecha si quieres contestar preguntas:</Text>
+        <View style={styles.btnCuriosidades}>
+          <InfoModal setVisible={setVisible} />
+          <TouchableOpacity
+            onPress={() => {
+              //console.log(questions);
+              navigation.navigate('quiz', questions);
+            }}
+            >
+            <Image style={styles.imgQuiz} resizeMode = "contain" source={exam}/>
+          </TouchableOpacity>
+        </View>
+        <InfoFooter exhibition={exhibition} />
       </ScrollView>
+
       <ModalBody
         visible={visible}
         showModal={showModal}
@@ -109,6 +111,14 @@ const InfoImage = ({ path }) => {
       sliderBoxHeight={400}
       onCurrentImagePressed={(index) => console.warn(`image ${index} pressed`)}
       currentImageEmitter={(index) => console.warn(`current pos is: ${index}`)}
+      dotColor="#FFEE58"
+      inactiveDotColor="#90A4AE"
+      paginationBoxVerticalPadding={20}
+      circleLoop
+      resizeMethod={'resize'}
+      resizeMode={'cover'}
+      ImageComponentStyle={{borderRadius: 15, width: '90%', marginTop: 5}}
+      imageLoadingColor="#2196F3"
     />
   );
 };
@@ -118,14 +128,13 @@ const InfoImage = ({ path }) => {
  */
 const InfoModal = ({ setVisible }) => {
   return (
-    <View style={styles.viewModal}>
-      <IconButton
-        icon="google-downasaur"
-        size={40}
-        color="#97be0d"
-        style={styles.info}
-        onPress={() => setVisible(true)}
-      />
+    <View >
+      <TouchableOpacity onPress={() => setVisible(true)}>
+          <Image style={styles.info} 
+              resizeMode = "contain"
+              source={curiosidades1}
+              />
+        </TouchableOpacity>
     </View>
   );
 };
@@ -136,7 +145,7 @@ const InfoModal = ({ setVisible }) => {
 const InfoTitle = ({ exhibition }) => {
   return (
     <View style={styles.viewInfo}>
-      <Title style={{ color: '#F29F05', fontWeight: 'bold', fontSize: 23, textAlign: 'center' }}>
+      <Title style={{ color: '#6B4D9F', fontWeight: 'bold', fontSize: 25, textAlign: 'center' }}>
         {exhibition.name}
       </Title>
     </View>
@@ -150,16 +159,7 @@ const InfoTitle = ({ exhibition }) => {
 const InfoSponsor = ({ url }) => {
   return (
     <View style={styles.viewSponsor}>
-      <Title
-        style={{
-          color: 'black',
-          fontSize: 17,
-          fontWeight: 'bold',
-          marginHorizontal: 30,
-          marginTop: 5,
-        }}>
-        Patrocina:{' '}
-      </Title>
+
       <Image source={{ uri: url }} style={styles.imgSponsor} />
     </View>
   );
@@ -233,6 +233,27 @@ const FooterItem = ({ title, desc, icon }) => {
  *@ignore
  */
 const styles = StyleSheet.create({
+  btnCuriosidades:{
+    marginTop: 20,
+    marginHorizontal: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+
+  },
+  btnQuiz:{
+    width: '25%', 
+    backgroundColor: Colors.accent, 
+    padding: 10, 
+    borderRadius: 100,
+    justifyContent: 'center',
+    alignContent: 'center',
+    marginTop: 10,
+  },
+  imgQuiz:{
+    width: 100,
+    height: 100,
+  },
   viewPoster: {
     shadowColor: '#000',
     shadowOffset: {
@@ -249,17 +270,13 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 30,
   },
   info: {
-    backgroundColor: '#fff',
-    marginTop: -40,
-    marginRight: 30,
-    width: 60,
-    height: 60,
-    borderRadius: 100,
-    borderColor: '#000',
-    borderWidth: 0.15,
+    width: 180,
+    height: 130,
   },
   viewInfo: {
     marginHorizontal: 30,
+    marginTop: 17,
+    marginBottom: 10,
   },
   viewRating: {
     marginHorizontal: 30,
@@ -293,18 +310,25 @@ const styles = StyleSheet.create({
   },
   overview: {
     fontFamily: 'NunitoSans-Bold',
-    marginHorizontal: 30,
+    marginHorizontal: 25,
     marginTop: 20,
     textAlign: 'justify',
     color: '#929292',
     fontSize: 16,
   },
+  viewSponsor:{
+    justifyContent: 'flex-start',
+    alignItems: 'flex-end',
+  },
   imgSponsor: {
-    width: 120,
-    height: 60,
-    alignSelf: 'center',
-    marginTop: 4,
-    marginBottom: 2,
+    width: 100,
+    height: 50,
+    backgroundColor: '#fff',
+    marginTop: -390,
+    marginRight: 30,
+    borderRadius:4,
+    borderColor: '#000',
+    borderWidth: 0.15,
   },
   wrapDot: {
     position: 'absolute',

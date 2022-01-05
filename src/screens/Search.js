@@ -11,7 +11,7 @@ import {
 import { Searchbar } from 'react-native-paper';
 import { map, size } from 'lodash';
 import { getExhibitionByName } from '../api/exhibitions';
-import Card from '../components/Card';
+import Card from '../components/Card2';
 import Colors from '../constants/Colors';
 
 /**

@@ -57,7 +57,7 @@ export default function StackNavigation(props) {
         <IconButton
           icon="arrow-left"
           onPress={() => navigation.goBack()}
-          color="#FFF"
+          color="#323F5E"
         />
       );
     return (

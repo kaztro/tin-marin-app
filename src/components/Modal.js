@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import Tin from '../assets/tin.png';
+import Marin from '../assets/icons/conocenosicon.png';
 
 /**
  * Componente que muestra el contenido del modal.
@@ -10,7 +11,7 @@ import Tin from '../assets/tin.png';
 const Modal = ({ curiousInfo }) => {
   return (
     <View style={styles.content}>
-      <Image source={Tin} style={styles.img} />
+      <Image source={Marin} style={styles.img} />
       <Text style={styles.text}>{curiousInfo}</Text>
     </View>
   );
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
   content: {
     maxWidth: '90%',
     minWidth: '60%',
-    height: 120,
+    height: 150,
     marginTop: 20,
     display: 'flex',
     flexDirection: 'row',
@@ -36,6 +37,8 @@ const styles = StyleSheet.create({
     width: 110,
     padding: 0,
     margin: 0,
+    justifyContent: 'center',
+    
   },
   text: {
     fontSize: 16.5,

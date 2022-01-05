@@ -29,12 +29,10 @@ const Card = ({ exhibition, color, textBtn, navigation}) => {
   
   return (
     <SafeAreaView style={styles.card}>
-
-        <Text style={styles.titulo}>{name}</Text>
-
+      <Text style={styles.titulo}>{name}</Text>
       <Image source={{uri: imageURL}} style={styles.img, [styles.img, {borderColor:color}]} />
       <View style={styles.viewCard}>
-        <View style={[styles.button, {backgroundColor: color}]}>
+        <View style={[styles.button, {backgroundColor: "#f1bc00",}]}>
           <TouchableOpacity
             style={styles.opacity}
             onPress={() => navigation.navigate('information', {_id})}>
@@ -57,7 +55,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     marginTop: 20,
     width: '90%',
-    height: 200,
+    height: 230,
   },
   viewCard: {
     flexDirection: 'column',
@@ -74,9 +72,9 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   titulo: {
-    fontFamily: 'BubblegumSans-Regular',
-    fontSize: 19, 
-    color: '#000', 
+    fontFamily: 'Boogaloo-Regular',
+    fontSize: 22, 
+    color: '#f29f05', 
     fontWeight: 'bold', 
     textAlign: "center",
     marginBottom: 10,
@@ -86,9 +84,11 @@ const styles = StyleSheet.create({
     paddingVertical: 7,
     borderRadius: 60,
     width: '50%',
-    height: 50,
-    marginTop: -28,
+    height: 60,
+    marginTop: -35,
     justifyContent: 'center',
+    borderWidth: 3,
+    borderColor: '#e66a2b'
     
   },    
   buttonText: {
@@ -106,6 +106,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
-    borderWidth: 5,
+    borderWidth: 6,
   },
 });
