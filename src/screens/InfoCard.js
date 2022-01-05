@@ -68,7 +68,7 @@ const InfoCard = ({ route, navigation }) => {
         <InfoImage path={imageURL} />
         {logoURL && <InfoSponsor url={logoURL} />}
         <Text style={styles.overview}>{exhibition.description}</Text>
-        <Text style={styles.overview}>Presiona el botón de la izquierda si quieres leer un dato curioso y presiona el de la derecha si quieres contestar preguntas:</Text>
+        <Text style={styles.overview2}>Presiona el botón de la izquierda si quieres leer un dato curioso y presiona el de la derecha si quieres contestar preguntas:</Text>
         <View style={styles.btnCuriosidades}>
           <InfoModal setVisible={setVisible} />
           <TouchableOpacity
@@ -314,6 +314,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
     textAlign: 'justify',
     color: '#929292',
+    fontSize: 16,
+  },
+  overview2: {
+    fontFamily: 'NunitoSans-Bold',
+    marginHorizontal: 25,
+    marginTop: 16,
+    textAlign: 'justify',
+    color: '#000',
     fontSize: 16,
   },
   viewSponsor:{
