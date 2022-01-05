@@ -69,7 +69,6 @@ const InfoCard = ({ route, navigation }) => {
         <Text style={styles.overview}>{exhibition.description}</Text>
         <InfoFooter exhibition={exhibition} />
         {logoURL && <InfoSponsor url={logoURL} />}
-        <InfoFooter exhibition={exhibition} />
         <StarRatings />
         <TouchableOpacity
           onPress={() => {
