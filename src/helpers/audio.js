@@ -100,3 +100,18 @@ const select = new Sound (require('../audio/select.mp3'), error => console.log(e
 export const selectButton = () => {
   select.play();
 }
+
+const exhibit = new Sound (require('../audio/exhibitSound.mp3'), error => console.log(error))
+export const exhibitButton = () => {
+  exhibit.play();
+}
+
+const congrats = new Sound (require('../audio/congrats.mp3'), error => console.log(error))
+export const congratsButton = () => {
+  congrats.play();
+}
+
+const fail = new Sound (require('../audio/fail.mp3'), error => console.log(error))
+export const failButton = () => {
+  fail.play();
+}

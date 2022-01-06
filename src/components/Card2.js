@@ -8,6 +8,8 @@ import {
   Image,
 } from 'react-native';
 
+import {exhibitButton} from '../helpers/audio'
+
 /**
  * Tarjeta utilizada para mostrar la información de las pantallas: Información de Covid, Exhibiciones, Preguntas Frecuentes, Busqueda    
  * @param {style} color - Cambia el color del fondo del titulo de nuestra tarjeta.
@@ -35,6 +37,7 @@ const Card = ({ exhibition, color, textBtn, navigation}) => {
         <View style={[styles.button, {backgroundColor: "#f1bc00",}]}>
           <TouchableOpacity
             style={styles.opacity}
+            onPressIn={exhibitButton}
             onPress={() => navigation.navigate('information', {_id})}>
             <Text style={styles.buttonText}>{textBtn}</Text>
           </TouchableOpacity>

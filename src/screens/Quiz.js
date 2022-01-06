@@ -5,6 +5,10 @@ import { getAllQuizzes } from '../api/quizzes'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { map, size } from 'lodash';
 import { createIconSetFromFontello } from 'react-native-vector-icons';
+import {
+    congratsButton,
+    failButton
+  } from '../helpers/audio';
 
 const Quiz = ({ route, navigation } ) => {
     const questionE = route.params;
@@ -39,8 +43,11 @@ const Quiz = ({ route, navigation } ) => {
         setIsOptionsDisabled(true);
         if (selectedOption == correct_option) {
             //Set Score
+            congratsButton();
             setScore(score + 1);
             //Show Next Button
+        } else {
+            failButton();
         }
         setShowNextButton(true)
     }
@@ -115,6 +122,7 @@ const Quiz = ({ route, navigation } ) => {
                             onPress={() => validateAnswer(option)}
                             disabled={isOptionsDisabled}
                             key={option}
+                            //onPressIn={(option == correctOption) ? congratsButton : (option == currentOptionSelected) ? failButton : congratsButton}
                             style={{
                                 borderWidth: 3,
                                 borderColor: option == correctOption
@@ -221,7 +229,10 @@ const Quiz = ({ route, navigation } ) => {
             {loading ? (
                 <StatusBar barStyle='light-content' backgroundColor={Colors.primaryColor} />
             ) : size(questions) == 0 ? (
-                <Text>No se encontraron Preguntas</Text>
+                <Text style={{
+                    textAlign: 'center',
+                    textAlignVertical: 'center'
+                }}>Lo sentimos esta exhibición actualmente no tiene preguntas</Text>
             ) : (
                 <View style={{
                     flex: 1,
@@ -230,9 +241,6 @@ const Quiz = ({ route, navigation } ) => {
                     backgroundColor: Colors.backgroundColor,
                     position: 'relative'
                 }}>
-
-                    {/* getFromApi */}
-                    {/*getFrom()*/}
 
                     {/* ProgressBar */}
                     {renderProgressBar()}
