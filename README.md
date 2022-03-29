@@ -65,10 +65,17 @@ Va a tardar un momento hasta devolvernos el control de la consola. Como resultad
 ---
 # Instrucciones de como correr:
 
-Para correr solo se necesita:
+Si se desea correr solo es necesario las siguientes instrucciones:
 
-Terminal (Linux)
-Powershell/CMD (Windows)
+### Para ejecutar los comandos
+- Terminal (Linux)
+- Powershell/CMD (Windows)
+
+### La app se probo con las siguientes condiciones :
+
+- Android Studio Bumblebee | 2021.1.1 Patch 2
+- Node.js v16.14.2. 
+- Java JDK 1.8.0_321-b07
 
 # 0. Borrar Cache
 
@@ -118,4 +125,4 @@ Si no tenemos nuestro telefono conectado inicia un emulador de android studio
 
 # Importante
 
-Para todas estas configuraciones no es necesario correr la app como app nativa de android studio, mas bien se puede correr desde una pantalla de comandos
+Para todas estas configuraciones no es necesario correr la app como app nativa de android studio, mas bien se puede correr desde una pantalla de comandos (Powershell/Terminal)
