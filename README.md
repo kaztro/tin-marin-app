@@ -60,7 +60,9 @@ Va a tardar un momento hasta devolvernos el control de la consola. Como resultad
 
 `start ./docs/index.html` (Windows)
 
-
+---
+---
+---
 # Instrucciones de como correr:
 
 Para correr solo se necesita:
@@ -110,8 +112,9 @@ npx react-native run-android
 - Corremos el comando 
 
 ```
-npm run start
+npm run android
 ```
+Si no tenemos nuestro telefono conectado inicia un emulador de android studio
 
 # Importante
 
