@@ -98,9 +98,13 @@ Primero instalar paquetes de node
 npm install
 ```
 
-# 2. Verificar el entorno dende se correra
+# 2. Verificar el entorno donde se correra
+1. Se debe instalar ***Google USB Driver*** En Appearance & Behavior > System Settings > Android SDK > Android SDK Platform 30
 
-## 2.1 Dispositivo Fisico
+2. Se debe instalar ***Google USB Driver*** En Appearance & Behavior > System Settings > Android SDK > Intel x86 Atom_64 System Image or Google APIs Intel x86 Atom System Image
+
+3. En [Configuración de entorno](https://reactnative.dev/docs/environment-setup) ir ala pestaña de React Native CLI Quickstar y buscar la configuracion del dispositivo donde se esta corriendo la app, por ejemplo: Windows -> Android
+## 2.1 Dispositivo Fisico (omitir este paso si se correra en emulador)
 
 1. Descargar e instalar Android Studio.
 2. Ir alas configuraciones de Android Studio 
@@ -112,7 +116,7 @@ npm install
 npx react-native run-android
 ```
 
-## 2.2 Emulador
+## 2.2 Emulador (omitir este paso si se correra en Dispositivo Fisico)
 
 1. Descargar e instalar Android Studio.
 
@@ -125,4 +129,4 @@ Si no tenemos nuestro telefono conectado inicia un emulador de android studio
 
 # Importante
 
-Para todas estas configuraciones no es necesario correr la app como app nativa de android studio, mas bien se puede correr desde una pantalla de comandos (Powershell/Terminal)
+- Solo se necesita la Terminal / Powershell no es necesario tener Android Studio abierto
