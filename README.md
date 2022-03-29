@@ -59,3 +59,60 @@ Para generar la documentación basta con correr el siguiente comando: `npm run d
 Va a tardar un momento hasta devolvernos el control de la consola. Como resultado, se creará una carpeta llamada "docs" en la raíz del proyecto. Es un sitio estático al cuál puedes acceder manualmente y abriendo el archivo "index.html"; o si deseas hacerlo desde consola puedes ejecutar el siguiente comando:
 
 `start ./docs/index.html` (Windows)
+
+
+# Instrucciones de como correr:
+
+Para correr solo se necesita:
+
+Terminal (Linux)
+Powershell/CMD (Windows)
+
+# 0. Borrar Cache
+
+Si es posible borre el cache de node para no tener problemas
+
+```
+npm cache clean --force
+```
+
+Verifique que el cache este borrado con:
+
+```
+npm cache verify
+```
+
+# 1. Instalar paquetes de Node
+
+Primero instalar paquetes de node 
+```
+npm install
+```
+
+# 2. Verificar el entorno dende se correra
+
+## 2.1 Dispositivo Fisico
+
+1. Descargar e instalar Android Studio.
+2. Ir alas configuraciones de Android Studio 
+3. Se debe instalar ***Google USB Driver*** En Appearance & Behavior > System Settings > Android SDK > SDK Tools >Google USB Driver
+
+- Ahora que tenemos los drivers corremos el comando 
+
+```
+npx react-native run-android
+```
+
+## 2.2 Emulador
+
+1. Descargar e instalar Android Studio.
+
+- Corremos el comando 
+
+```
+npm run start
+```
+
+# Importante
+
+Para todas estas configuraciones no es necesario correr la app como app nativa de android studio, mas bien se puede correr desde una pantalla de comandos
