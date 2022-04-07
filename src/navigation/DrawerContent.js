@@ -63,11 +63,11 @@ const DrawerContent = (props) => {
           onPress={() => navigation.navigate('comments')}
           icon="email-alert"
         />
-        {/* <Drawer.Item
+        <Drawer.Item
           label="Donaciones"
           onPress={() => navigation.navigate('donations')}
           icon="heart"
-        /> */}
+        />
         <Drawer.Item
           label="Preguntas Frecuentes"
           onPress={() => navigation.navigate('FAQs')}

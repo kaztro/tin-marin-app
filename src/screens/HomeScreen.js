@@ -164,6 +164,25 @@ const HomeScreen = ({ navigation }) => {
               </Text>
             </View>
         </TouchableOpacity>
+        
+        <TouchableOpacity
+          onPressIn={selectButton}
+          onPress={() => {
+            navigation.navigate('donations');
+          }}
+          style={{ ...styles.cardContainer}}>
+            <Image
+              style = {{width:100, height:100}}
+              resizeMode = "contain"
+              source={sitiosicon}
+            />
+            <View style={styles.textContainer}>
+              <Text style={styles.textMorado}>Dona aquí</Text>
+              <Text style={styles.text2}>
+                Tu ayuda es necesaria para seguir abiertos a las familias salvadoreñas
+              </Text>
+            </View>
+        </TouchableOpacity>
 
       </View>
     </ScrollView>

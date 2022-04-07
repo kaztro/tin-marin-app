@@ -135,7 +135,7 @@ export default function StackNavigation(props) {
         component={DonationScreen}
         options={{
           title: '',
-          headerLeft: () => buttonLeft(),
+          headerLeft: () => buttonLeft('donations'),
         }}
       />
       <Stack.Screen
