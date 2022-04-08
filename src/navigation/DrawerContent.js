@@ -40,14 +40,14 @@ const DrawerContent = (props) => {
         />
         <Drawer.Item
           label="Exhibiciones"
-          onPress={() =>{playButtonPress, navigation.navigate('exhibits')} }
+          onPress={() => { playButtonPress, navigation.navigate('exhibits') }}
           icon="ticket"
         />
-        {/* <Drawer.Item
-                    label="Eventos"
-                    onPress={()=> navigation.navigate("events")}
-                    icon="gift"
-                /> */}
+        <Drawer.Item
+          label="Eventos"
+          onPress={() => navigation.navigate("events")}
+          icon="gift"
+        />
         <Drawer.Item
           label="Recomendaciones Covid-19"
           onPress={() => navigation.navigate('covid')}
@@ -78,6 +78,11 @@ const DrawerContent = (props) => {
           onPress={() => navigation.navigate('WebLinks')}
           icon="web"
         />
+        <Drawer.Item
+          label="Programas"
+          onPress={() => navigation.navigate('WebLinks')}
+          icon="web"
+        />
       </Drawer.Section>
     </DrawerContentScrollView>
   );
@@ -90,7 +95,7 @@ const styles = StyleSheet.create({
   image: {
     alignItems: 'center',
     backgroundColor: '#4E73DF',
-    marginTop:20,
+    marginTop: 20,
   },
   second: {
     color: '#860472',

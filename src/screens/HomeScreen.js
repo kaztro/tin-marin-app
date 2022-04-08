@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   FlatList,
   Dimensions,
-  Image
+  Image,
+  Linking
 } from 'react-native';
 //new image imports for the new menu design
 import playground from '../assets/icons/playground.png';
@@ -25,6 +26,7 @@ import covidicon from '../assets/icons/covidicon.png';
 import covidicon2 from '../assets/icons/covidicon2.png';
 import conocenosicon from '../assets/icons/conocenosicon.png';
 import sitiosicon from '../assets/icons/sitiosicon.png';
+import donationIco from '../assets/donarpng.png';
 
 import {
   selectButton
@@ -46,8 +48,8 @@ import ConocenosMas from '../assets/ConocenosMas.jpg';
 
 const HomeScreen = ({ navigation }) => {
   return (
-    
-    <ScrollView  style={styles.scrollView}>
+
+    <ScrollView style={styles.scrollView}>
       <View style={styles.view}>
 
         <TouchableOpacity
@@ -56,35 +58,35 @@ const HomeScreen = ({ navigation }) => {
             navigation.navigate('exhibits');
           }}
           style={styles.cardContainer}>
-            <Image
-              style = {{width:100, height:100}}
-              resizeMode = "contain"
-              source={playground}
-            />
-            <View style={styles.textContainer}>
-              <Text style={styles.text}>Exhibiciones</Text>
-              <Text style={styles.text2}>
-                Ven a conocer todas las exhibiciones disponibles
-              </Text>
-            </View>
-        </TouchableOpacity> 
+          <Image
+            style={{ width: 100, height: 100 }}
+            resizeMode="contain"
+            source={playground}
+          />
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>Exhibiciones</Text>
+            <Text style={styles.text2}>
+              Ven a conocer todas las exhibiciones disponibles
+            </Text>
+          </View>
+        </TouchableOpacity>
         <TouchableOpacity
           onPressIn={selectButton}
           onPress={() => {
             navigation.navigate('covid');
           }}
           style={styles.cardContainer}>
-            <Image
-              style = {{width:100, height:100}}
-              resizeMode = "contain"
-              source={covidicon2}
-            />
-            <View style={styles.textContainer}>
-              <Text style={styles.textYellow}>Recomendaciones Covid-19</Text>
-              <Text style={styles.text2}>
-                Toma en cuenta estas recomendaciones para venir al museo
-              </Text>
-            </View>
+          <Image
+            style={{ width: 100, height: 100 }}
+            resizeMode="contain"
+            source={covidicon2}
+          />
+          <View style={styles.textContainer}>
+            <Text style={styles.textYellow}>Recomendaciones Covid-19</Text>
+            <Text style={styles.text2}>
+              Toma en cuenta estas recomendaciones para venir al museo
+            </Text>
+          </View>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -93,18 +95,18 @@ const HomeScreen = ({ navigation }) => {
             navigation.navigate('knowMore');
           }}
           style={styles.cardContainer}>
-            <Image
-              style = {{width:100, height:100}}
-              resizeMode = "contain"
-              source={conocenosicon}
-            />
-            <View style={styles.textContainer}>
-              <Text style={styles.textMorado}>Conocenos Más</Text>
-              <Text style={styles.text2}>
-                Aqui puedes encontrar informacion de contacto, estamos a la
-                orden!
-              </Text>
-            </View>
+          <Image
+            style={{ width: 100, height: 100 }}
+            resizeMode="contain"
+            source={conocenosicon}
+          />
+          <View style={styles.textContainer}>
+            <Text style={styles.textMorado}>Conocenos Más</Text>
+            <Text style={styles.text2}>
+              Aqui puedes encontrar informacion de contacto, estamos a la
+              orden!
+            </Text>
+          </View>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -113,18 +115,18 @@ const HomeScreen = ({ navigation }) => {
             navigation.navigate('comments');
           }}
           style={styles.cardContainer}>
-            <Image
-              style = {{width:100, height:100}}
-              resizeMode = "contain"
-              source={suggestion}
-            />
-            <View style={styles.textContainer}>
-              <Text style={styles.text}>Sugerencias</Text>
-              <Text style={styles.text2}>
-                Para seguir mejorando, puedes dejarnos cualquier duda o
-                inquietud!
-              </Text>
-            </View>
+          <Image
+            style={{ width: 100, height: 100 }}
+            resizeMode="contain"
+            source={suggestion}
+          />
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>Sugerencias</Text>
+            <Text style={styles.text2}>
+              Para seguir mejorando, puedes dejarnos cualquier duda o
+              inquietud!
+            </Text>
+          </View>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -133,17 +135,17 @@ const HomeScreen = ({ navigation }) => {
             navigation.navigate('FAQs');
           }}
           style={styles.cardContainer}>
-            <Image
-              style = {{width:100, height:100}}
-              resizeMode = "contain"
-              source={faq}
-            />
-            <View style={styles.textContainer}>
-              <Text style={styles.textYellow}>Preguntas Frecuentes</Text>
-              <Text style={styles.text2}>
-                Por si tienes alguna consulta para resolver de forma rápida!
-              </Text>
-            </View>
+          <Image
+            style={{ width: 100, height: 100 }}
+            resizeMode="contain"
+            source={faq}
+          />
+          <View style={styles.textContainer}>
+            <Text style={styles.textYellow}>Preguntas Frecuentes</Text>
+            <Text style={styles.text2}>
+              Por si tienes alguna consulta para resolver de forma rápida!
+            </Text>
+          </View>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -151,37 +153,55 @@ const HomeScreen = ({ navigation }) => {
           onPress={() => {
             navigation.navigate('WebLinks');
           }}
-          style={{ ...styles.cardContainer}}>
-            <Image
-              style = {{width:100, height:100}}
-              resizeMode = "contain"
-              source={sitiosicon}
-            />
-            <View style={styles.textContainer}>
-              <Text style={styles.textMorado}>Sitios de Interés</Text>
-              <Text style={styles.text2}>
-                Si deseas profundizar un poco más en otros temas relevantes
-              </Text>
-            </View>
+          style={{ ...styles.cardContainer }}>
+          <Image
+            style={{ width: 100, height: 100 }}
+            resizeMode="contain"
+            source={sitiosicon}
+          />
+          <View style={styles.textContainer}>
+            <Text style={styles.textMorado}>Sitios de Interés</Text>
+            <Text style={styles.text2}>
+              Si deseas profundizar un poco más en otros temas relevantes
+            </Text>
+          </View>
         </TouchableOpacity>
-        
+
         <TouchableOpacity
           onPressIn={selectButton}
           onPress={() => {
-            navigation.navigate('donations');
+            navigation.navigate('events');
           }}
-          style={{ ...styles.cardContainer}}>
-            <Image
-              style = {{width:100, height:100}}
-              resizeMode = "contain"
-              source={sitiosicon}
-            />
-            <View style={styles.textContainer}>
-              <Text style={styles.textMorado}>Dona aquí</Text>
-              <Text style={styles.text2}>
-                Tu ayuda es necesaria para seguir abiertos a las familias salvadoreñas
-              </Text>
-            </View>
+          style={{ ...styles.cardContainer }}>
+          <Image
+            style={{ width: 100, height: 100 }}
+            resizeMode="contain"
+            source={sitiosicon}
+          />
+          <View style={styles.textContainer}>
+            <Text style={styles.textMorado}>Voluntariado</Text>
+            <Text style={styles.text2}>
+              Ayúdanos a dibujar sonrisas y enriquecer los conocimientos de la niñez y juventud salvadoreña.
+            </Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          //open={ Linking.openURL('https://tinmarin.org/donacion/') }
+          onPressIn={selectButton}
+          onPress={() => { Linking.openURL('https://tinmarin.org/donacion/') }}
+          style={{ ...styles.cardContainer }}>
+          <Image
+            style={{ width: 100, height: 100 }}
+            resizeMode="contain"
+            source={donationIco}
+          />
+          <View style={styles.textContainer}>
+            <Text style={styles.textMorado}>Dona aquí</Text>
+            <Text style={styles.text2}>
+              Tu ayuda es necesaria para seguir abiertos a las familias salvadoreñas
+            </Text>
+          </View>
         </TouchableOpacity>
 
       </View>
@@ -195,8 +215,8 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    marginTop:0,
-    backgroundColor:'#FFF4BD',
+    marginTop: 0,
+    backgroundColor: '#FFF4BD',
   },
   view: {
     flexDirection: 'row',
@@ -206,16 +226,16 @@ const styles = StyleSheet.create({
   cardContainer: {
     margin: 2,
     padding: 10,
-    width: Dimensions.get('window').width /2 -6,
+    width: Dimensions.get('window').width / 2 - 6,
     backgroundColor: 'white',
     borderRadius: 10,
     height: 250,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 3,
-    
+
     shadowColor: '#470000',
-    shadowOffset: {width: 0, height: 1},
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     elevation: 3,
   },
