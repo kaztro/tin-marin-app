@@ -206,30 +206,27 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   text: {
-    fontFamily: 'Inter',
+    fontFamily: 'Boogaloo-Regular',
     color: '#E50E23',
-    fontSize: 18,
-    textAlign: "center",
-    fontWeight: 'bold',
+    fontSize: 24,
+    textAlign: "center"
   },
   textYellow: {
-    fontFamily: 'Inter',
+    fontFamily: 'Boogaloo-Regular',
     color: '#FABA00',
-    fontSize: 18,
-    textAlign: "center",
-    fontWeight: 'bold',
+    fontSize: 24,
+    textAlign: "center"
   },
   textMorado: {
-    fontFamily: 'Inter',
+    fontFamily: 'Boogaloo-Regular',
     color: '#93117D',
-    fontSize: 18,
-    textAlign: "center",
-    fontWeight: 'bold',
+    fontSize: 24,
+    textAlign: "center"
   },
   text2: {
-    fontFamily: 'Inter',
+    fontFamily: 'Boogaloo-Regular',
     color: '#393838',
-    fontSize: 12,
+    fontSize: 15,
     textAlign: "center"
   },
 });

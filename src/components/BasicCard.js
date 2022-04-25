@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     fontSize: Dimensions.get('window').height > 600 ? 19 : 14,
     color: '#fff',
-    fontWeight: 'bold',
+//    fontWeight: 'bold',
     textAlign: 'justify',
   },
   button: {
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     color: '#fff',
-    fontWeight: 'bold',
+//    fontWeight: 'bold',
     fontSize: 17,
     opacity: 1,
   },
