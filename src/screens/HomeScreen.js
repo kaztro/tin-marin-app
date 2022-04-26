@@ -27,6 +27,7 @@ import covidicon2 from '../assets/icons/covidicon2.png';
 import conocenosicon from '../assets/icons/conocenosicon.png';
 import sitiosicon from '../assets/icons/sitiosicon.png';
 import donationIco from '../assets/donarpng.png';
+import eventsIco from '../assets/icons/voluntariado.png';
 
 import {
   selectButton
@@ -176,7 +177,7 @@ const HomeScreen = ({ navigation }) => {
           <Image
             style={{ width: 100, height: 100 }}
             resizeMode="contain"
-            source={sitiosicon}
+            source={eventsIco}
           />
           <View style={styles.textContainer}>
             <Text style={styles.textMorado}>Voluntariado</Text>

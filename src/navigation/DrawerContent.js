@@ -80,8 +80,8 @@ const DrawerContent = (props) => {
         />
         <Drawer.Item
           label="Programas"
-          onPress={() => navigation.navigate('WebLinks')}
-          icon="web"
+          onPress={() => navigation.navigate('events')}
+          icon="star"
         />
       </Drawer.Section>
     </DrawerContentScrollView>
