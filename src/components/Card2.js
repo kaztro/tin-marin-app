@@ -81,13 +81,14 @@ const styles = StyleSheet.create({
     //fontWeight: 'bold', 
     textAlign: "center",
     marginBottom: 10,
+    
   },
 
   button: {
     paddingVertical: 7,
-    borderRadius: 60,
-    width: '50%',
-    height: 60,
+    borderRadius: 45,
+    width: '25%',
+    height: '50%',
     marginTop: -35,
     justifyContent: 'center',
     borderWidth: 3,
