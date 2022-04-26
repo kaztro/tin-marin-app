@@ -58,10 +58,12 @@ const styles = StyleSheet.create({
     marginVertical: 40,
     width: '90%',
     height: Dimensions.get('window').height / 3,
+    fontFamily:'BubblegumSans-Regular'
   },
   viewCard: {
     flexDirection: 'column',
     alignItems: 'center',
+    fontFamily:'BubblegumSans-Regular'
   },
   tituloView: {
     width: '100%',
@@ -71,6 +73,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderTopLeftRadius: 15,
     height: '35%',
+    fontFamily:'BubblegumSans-Regular'
   },
   titulo: {
     marginHorizontal: 10,
@@ -78,6 +81,7 @@ const styles = StyleSheet.create({
     color: '#fff',
 //    fontWeight: 'bold',
     textAlign: 'justify',
+    fontFamily:'BubblegumSans-Regular'
   },
   button: {
     paddingVertical: 7,
@@ -86,6 +90,7 @@ const styles = StyleSheet.create({
     opacity: 0.8,
     height: 40,
     marginTop: -60,
+    fontFamily:'BubblegumSans-Regular'
   },
   buttonText: {
     textAlign: 'center',
@@ -93,11 +98,13 @@ const styles = StyleSheet.create({
 //    fontWeight: 'bold',
     fontSize: 17,
     opacity: 1,
+    fontFamily:'BubblegumSans-Regular'
   },
   img: {
     width: '100%',
     height: '90%',
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
+    fontFamily:'BubblegumSans-Regular'
   },
 });

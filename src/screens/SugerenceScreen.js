@@ -164,6 +164,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontFamily: 'Boogaloo-Regular',
     color: '#fff',
+    fontSize: 22,
 //    fontWeight: 'bold',
   },
   title: {
