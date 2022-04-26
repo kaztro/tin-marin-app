@@ -71,6 +71,7 @@ const ExhibitsScreen = ({ navigation }) => {
                 color={swapColor ? Colors.green : Colors.magenta}
                 exhibition={exhibition}
                 navigation={navigation}
+                style={styles.title}
               />
             );
           })}
