@@ -220,7 +220,9 @@ const FooterItem = ({ title, desc, icon }) => {
         color="#F87311"
         style={styles.footerItem}
       />
-      <Text style={[styles.textItem, { fontWeight: 'bold' }]}>{title}</Text>
+      <Text style={[styles.textItem
+        //, { fontWeight: 'bold' }
+        ]}>{title}</Text>
       {Array.isArray(desc) ? (
         map(desc, (d, index) => (
           <Text key={index} style={styles.textItem}>
@@ -309,13 +311,13 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   textItem: {
-    fontFamily: 'NunitoSans-Bold',
+    fontFamily: 'Boogaloo-Regular',
     textAlign: 'center',
     fontSize: 13,
     color: '#000',
   },
   overview: {
-    fontFamily: 'NunitoSans-Bold',
+    fontFamily: 'Boogaloo-Regular',
     marginHorizontal: 25,
     marginTop: 20,
     textAlign: 'justify',
@@ -323,7 +325,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   overview2: {
-    fontFamily: 'NunitoSans-Bold',
+    fontFamily: 'Boogaloo-Regular',
     marginHorizontal: 25,
     marginTop: 16,
     textAlign: 'justify',

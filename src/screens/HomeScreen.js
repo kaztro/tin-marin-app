@@ -14,7 +14,8 @@ import {
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 //new image imports for the new menu design
-import playground from '../assets/icons/playground.png';
+import playground from '../assets/icons/museo_arte.png';
+//import playground from '../assets/icons/museo.png';
 import newnormality from '../assets/icons/newnormality.png';
 import suggestion from '../assets/icons/suggestion.png';
 import faq from '../assets/icons/faq.png';
@@ -24,9 +25,10 @@ import man from '../assets/icons/man.png';
 
 //new images for the menu icons
 import covidicon from '../assets/icons/covidicon.png';
-import covidicon2 from '../assets/icons/covidicon2.png';
-import conocenosicon from '../assets/icons/conocenosicon.png';
-import sitiosicon from '../assets/icons/sitiosicon.png';
+import covidicon2 from '../assets/icons/covid_icon.png';
+import conocenosicon from '../assets/icons/conversacion.png';
+import sitiosicon from '../assets/icons/sitios_tin.png';
+//import covidicon2 from '../assets/icons/covidicon2.png';
 import donationIco from '../assets/donarpng.png';
 import eventsIco from '../assets/icons/voluntariado.png';
 import celebIco from '../assets/icons/celebraciones.png';
@@ -283,30 +285,27 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   text: {
-    fontFamily: 'Inter',
+    fontFamily: 'Boogaloo-Regular',
     color: '#E50E23',
-    fontSize: 18,
-    textAlign: "center",
-    fontWeight: 'bold',
+    fontSize: 24,
+    textAlign: "center"
   },
   textYellow: {
-    fontFamily: 'Inter',
+    fontFamily: 'Boogaloo-Regular',
     color: '#FABA00',
-    fontSize: 18,
-    textAlign: "center",
-    fontWeight: 'bold',
+    fontSize: 24,
+    textAlign: "center"
   },
   textMorado: {
-    fontFamily: 'Inter',
+    fontFamily: 'Boogaloo-Regular',
     color: '#93117D',
-    fontSize: 18,
-    textAlign: "center",
-    fontWeight: 'bold',
+    fontSize: 24,
+    textAlign: "center"
   },
   text2: {
-    fontFamily: 'Inter',
+    fontFamily: 'Boogaloo-Regular',
     color: '#393838',
-    fontSize: 12,
+    fontSize: 15,
     textAlign: "center"
   },
 });
