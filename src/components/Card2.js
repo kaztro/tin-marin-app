@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   titulo: {
     fontFamily:'BubblegumSans-Regular',
-    fontSize: 22, 
+    fontSize: 25, 
     color: '#f29f05', 
     //fontWeight: 'bold', 
     textAlign: "center",

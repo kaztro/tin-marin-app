@@ -151,7 +151,7 @@ const InfoModal = ({ setVisible }) => {
 const InfoTitle = ({ exhibition }) => {
   return (
     <View style={styles.viewInfo}>
-      <Title style={{ color: '#6B4D9F', fontWeight: 'bold', fontSize: 25, textAlign: 'center' }}>
+      <Title style={{ color: '#6B4D9F', fontFamily: 'Boogaloo-Regular', fontSize: 30, textAlign: 'center' }}>
         {exhibition.name}
       </Title>
     </View>
