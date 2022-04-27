@@ -12,6 +12,7 @@ import {
   Image,
   Linking
 } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 //new image imports for the new menu design
 import playground from '../assets/icons/playground.png';
 import newnormality from '../assets/icons/newnormality.png';
@@ -28,6 +29,7 @@ import conocenosicon from '../assets/icons/conocenosicon.png';
 import sitiosicon from '../assets/icons/sitiosicon.png';
 import donationIco from '../assets/donarpng.png';
 import eventsIco from '../assets/icons/voluntariado.png';
+import celebIco from '../assets/icons/celebraciones.png';
 
 import {
   selectButton
@@ -171,7 +173,7 @@ const HomeScreen = ({ navigation }) => {
         <TouchableOpacity
           onPressIn={selectButton}
           onPress={() => {
-            navigation.navigate('events');
+            navigation.navigate('volunteering');
           }}
           style={{ ...styles.cardContainer }}>
           <Image
@@ -188,17 +190,35 @@ const HomeScreen = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          //open={ Linking.openURL('https://tinmarin.org/donacion/') }
+          onPressIn={selectButton}
+          onPress={() => { Linking.openURL('https://tinmarin.org/pinatas/') }}
+          style={{ ...styles.cardContainer }}>
+          <Image
+            style={{ width: 100, height: 100 }}
+            resizeMode="contain"
+            source={celebIco}
+          />
+          <View style={styles.textContainer}>
+            <Text style={styles.textMorado}>Celebraciones</Text>
+            <MaterialCommunityIcons name="open-in-new" style={styles.textMorado}/>
+            <Text style={styles.text2}>
+              ¡Pásala divertido con tu familia y amigos!
+            </Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity
           onPressIn={selectButton}
           onPress={() => { Linking.openURL('https://tinmarin.org/donacion/') }}
-          style={{ ...styles.cardContainer }}>
+          style={{ ...styles.donationContainer }}>
           <Image
             style={{ width: 100, height: 100 }}
             resizeMode="contain"
             source={donationIco}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.textMorado}>Dona aquí</Text>
+            <Text style={styles.textMorado}>Dona aquí </Text>
+            <MaterialCommunityIcons name="open-in-new" style={styles.textMorado}/>
             <Text style={styles.text2}>
               Tu ayuda es necesaria para seguir abiertos a las familias salvadoreñas
             </Text>
@@ -234,6 +254,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 3,
+
+    shadowColor: '#470000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    elevation: 3,
+  },
+  donationContainer: {
+    margin: 2,
+    padding: 10,
+    width: Dimensions.get('window').width / 1 - 6,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 3,
+    marginBottom: 3,
 
     shadowColor: '#470000',
     shadowOffset: { width: 0, height: 1 },

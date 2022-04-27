@@ -49,6 +49,21 @@ const DrawerContent = (props) => {
           icon="gift"
         />
         <Drawer.Item
+          label="Voluntariado"
+          onPress={() => navigation.navigate('volunteering')}
+          icon="hand"
+        />
+        <Drawer.Item
+          label="Celebraciones"
+          onPress={() => navigation.navigate('celebration')}
+          icon="star"
+        />
+        <Drawer.Item
+          label="Donaciones"
+          onPress={() => navigation.navigate('donations')}
+          icon="heart"
+        />
+        <Drawer.Item
           label="Recomendaciones Covid-19"
           onPress={() => navigation.navigate('covid')}
           icon="virus"
@@ -64,11 +79,6 @@ const DrawerContent = (props) => {
           icon="email-alert"
         />
         <Drawer.Item
-          label="Donaciones"
-          onPress={() => navigation.navigate('donations')}
-          icon="heart"
-        />
-        <Drawer.Item
           label="Preguntas Frecuentes"
           onPress={() => navigation.navigate('FAQs')}
           icon="frequently-asked-questions"
@@ -77,11 +87,6 @@ const DrawerContent = (props) => {
           label="Sitios de Interés"
           onPress={() => navigation.navigate('WebLinks')}
           icon="web"
-        />
-        <Drawer.Item
-          label="Programas"
-          onPress={() => navigation.navigate('events')}
-          icon="star"
         />
       </Drawer.Section>
     </DrawerContentScrollView>
@@ -94,14 +99,14 @@ const DrawerContent = (props) => {
 const styles = StyleSheet.create({
   image: {
     alignItems: 'center',
-    backgroundColor: '#4E73DF',
+    backgroundColor: '#ffd149',
     marginTop: 20,
   },
   second: {
     color: '#860472',
   },
   drawer: {
-    backgroundColor: Colors.primaryColor,
+    backgroundColor: '#ffd149',
     color: '#FFF',
   },
 });
