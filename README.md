@@ -59,3 +59,74 @@ Para generar la documentación basta con correr el siguiente comando: `npm run d
 Va a tardar un momento hasta devolvernos el control de la consola. Como resultado, se creará una carpeta llamada "docs" en la raíz del proyecto. Es un sitio estático al cuál puedes acceder manualmente y abriendo el archivo "index.html"; o si deseas hacerlo desde consola puedes ejecutar el siguiente comando:
 
 `start ./docs/index.html` (Windows)
+
+---
+---
+---
+# Instrucciones de como correr:
+
+Si se desea correr solo es necesario las siguientes instrucciones:
+
+### Para ejecutar los comandos
+- Terminal (Linux)
+- Powershell/CMD (Windows)
+
+### La app se probo con las siguientes condiciones :
+
+- Android Studio Bumblebee | 2021.1.1 Patch 2
+- Node.js v16.14.2. 
+- Java JDK 1.8.0_321-b07
+
+# 0. Borrar Cache
+
+Si es posible borre el cache de node para no tener problemas
+
+```
+npm cache clean --force
+```
+
+Verifique que el cache este borrado con:
+
+```
+npm cache verify
+```
+
+# 1. Instalar paquetes de Node
+
+Primero instalar paquetes de node 
+```
+npm install
+```
+
+# 2. Verificar el entorno donde se correra
+1. Se debe instalar ***Google USB Driver*** En Appearance & Behavior > System Settings > Android SDK > Android SDK Platform 30
+
+2. Se debe instalar ***Google USB Driver*** En Appearance & Behavior > System Settings > Android SDK > Intel x86 Atom_64 System Image or Google APIs Intel x86 Atom System Image
+
+3. En [Configuración de entorno](https://reactnative.dev/docs/environment-setup) ir ala pestaña de React Native CLI Quickstar y buscar la configuracion del dispositivo donde se esta corriendo la app, por ejemplo: Windows -> Android
+## 2.1 Dispositivo Fisico (omitir este paso si se correra en emulador)
+
+1. Descargar e instalar Android Studio.
+2. Ir alas configuraciones de Android Studio 
+3. Se debe instalar ***Google USB Driver*** En Appearance & Behavior > System Settings > Android SDK > SDK Tools >Google USB Driver
+
+- Ahora que tenemos los drivers corremos el comando 
+
+```
+npx react-native run-android
+```
+
+## 2.2 Emulador (omitir este paso si se correra en Dispositivo Fisico)
+
+1. Descargar e instalar Android Studio.
+
+- Corremos el comando 
+
+```
+npm run android
+```
+Si no tenemos nuestro telefono conectado inicia un emulador de android studio
+
+# Importante
+
+- Solo se necesita la Terminal / Powershell no es necesario tener Android Studio abierto
